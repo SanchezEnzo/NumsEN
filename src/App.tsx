@@ -4,25 +4,37 @@ import { numberToText } from './service/numberToString'
 export default function App() {
 	const [number, setNumber] = useState(Math.floor(Math.random() * 1000))
 	const [responseState, setResponseState] = useState<boolean>()
+	const [badResponse, setBadResponse] = useState(false)
 
-	console.log(numberToText(471))
-	function checkResponse (res: FormDataEntryValue) {
-		
-		if (numberToText(number) === res) setResponseState(true)
+	// console.log(numberToText(471))
+	function checkResponse(res: string) {
+		if (numberToText(number) === res.trim().toLowerCase()) setResponseState(true)
 		else setResponseState(false)
 		console.log(responseState)
 	}
 
-	function generarNumeroRandom() {
+	function getNewRandomNumber() {
 		setNumber(Math.floor(Math.random() * 1000))
+		setBadResponse(false)
 	}
 
-	function handleResponse(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault()
-		const { response } = Object.fromEntries(new FormData(e.target as HTMLFormElement))
-		checkResponse(response)
+function handleResponse(e: FormEvent<HTMLFormElement>) {
+	e.preventDefault()
+	const formData = new FormData(e.target as HTMLFormElement)
+	const response = formData.get('response') 
+
+	if (
+		typeof response !== 'string' || 
+		response.trim() === '' ||
+		/\d/.test(response)
+	) {
+		setBadResponse(true)
+		return
 	}
 
+	// Si pasa las validaciones, continuamos
+	checkResponse(response)
+}
 	return (
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-40'>
 			<p className='text-[10rem]'>{number}</p>
@@ -30,7 +42,8 @@ export default function App() {
 				<input type='text' className='border-red-500 border' name='response' />
 				<button className='border px-2 rounded-lg'>Verificar</button>
 			</form>
-			<button onClick={generarNumeroRandom}>Cambiar Numero</button>
+			{badResponse && <p>No se permite este tipo de respuesta</p>}
+			<button onClick={getNewRandomNumber}>Cambiar Numero</button>
 		</div>
 	)
 }
