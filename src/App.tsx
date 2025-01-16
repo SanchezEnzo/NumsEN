@@ -1,5 +1,6 @@
 import { useState, FormEvent, useRef } from 'react'
 import { numberToText } from './service/numberToString'
+import { isInputValid } from './service/isInputInvalid'
 
 // Constantes para los estados
 enum RESPONSE_STATE {
@@ -10,25 +11,15 @@ enum RESPONSE_STATE {
 }
 
 export default function App() {
-	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1) 
+	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const [language, setLanguage] = useState('en-GB')
 	const inputRef = useRef<HTMLInputElement>(null)
 
-
-	function handleCheckResponse(res: string) {
-		const isCorrect = numberToText(number) === res.trim().toLowerCase()
-		setResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
-	}
-
 	function getNewRandomNumber() {
-		setNumber(Math.floor(Math.random() * 999) + 1) 
+		setNumber(Math.floor(Math.random() * 999) + 1)
 		setResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
-	}
-
-	const isInputValid = (response: string): boolean => {
-		return /^[a-zA-Z\s-]+$/.test(response.trim())
 	}
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -40,7 +31,8 @@ export default function App() {
 			return
 		}
 
-		handleCheckResponse(response)
+		const isCorrect = numberToText(number) === response.trim().toLowerCase()
+		setResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
 	}
 
 	function playAudio() {
@@ -55,7 +47,8 @@ export default function App() {
 			return <p className='text-red-500'>No se permite esta respuesta</p>
 		if (response === RESPONSE_STATE.WRONG)
 			return <p className='text-red-500'>Respuesta Incorrecta</p>
-		return <p className='text-green-500'>¡Respuesta Correcta!</p>
+		if (response === RESPONSE_STATE.RIGHT)
+			return <p className='text-green-500'>¡Respuesta Correcta!</p>
 	}
 
 	return (
