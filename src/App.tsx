@@ -1,19 +1,14 @@
 import { useState, FormEvent, useRef } from 'react'
 import { numberToText } from './service/numberToString'
 import { isInputValid } from './service/isInputInvalid'
-
-// Constantes para los estados
-enum RESPONSE_STATE {
-	INIT,
-	INVALID,
-	RIGHT,
-	WRONG,
-}
+import { useLanguage } from './hooks/useLanguage'
+import { Result } from './components/Result'
+import { RESPONSE_STATE } from './constants/responseState'
 
 export default function App() {
 	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
+	const {language, changeLanguage, playAudio } = useLanguage({number})
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
-	const [language, setLanguage] = useState('en-GB')
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	function getNewRandomNumber() {
@@ -26,29 +21,10 @@ export default function App() {
 		e.preventDefault()
 		const response = inputRef.current?.value || ''
 
-		if (!isInputValid(response)) {
-			setResponse(RESPONSE_STATE.INVALID)
-			return
-		}
+		if (!isInputValid(response)) return setResponse(RESPONSE_STATE.INVALID)
 
 		const isCorrect = numberToText(number) === response.trim().toLowerCase()
 		setResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
-	}
-
-	function playAudio() {
-		window.speechSynthesis.cancel()
-		const utterance = new SpeechSynthesisUtterance(numberToText(number))
-		utterance.lang = language
-		window.speechSynthesis.speak(utterance)
-	}
-
-	function Result() {
-		if (response === RESPONSE_STATE.INVALID)
-			return <p className='text-red-500'>No se permite esta respuesta</p>
-		if (response === RESPONSE_STATE.WRONG)
-			return <p className='text-red-500'>Respuesta Incorrecta</p>
-		if (response === RESPONSE_STATE.RIGHT)
-			return <p className='text-green-500'>¡Respuesta Correcta!</p>
 	}
 
 	return (
@@ -76,7 +52,7 @@ export default function App() {
 				</button>
 				<button
 					type='button'
-					onClick={() => setLanguage('en-GB')}
+					onClick={() => changeLanguage('en-GB')}
 					className={`border px-2 rounded-lg ${
 						language === 'en-GB' ? 'bg-gray-200' : ''
 					}`}
@@ -85,7 +61,7 @@ export default function App() {
 				</button>
 				<button
 					type='button'
-					onClick={() => setLanguage('en-US')}
+					onClick={() => changeLanguage('en-US')}
 					className={`border px-2 rounded-lg ${
 						language === 'en-US' ? 'bg-gray-200' : ''
 					}`}
@@ -100,7 +76,7 @@ export default function App() {
 					Escuchar
 				</button>
 			</form>
-			<Result />
+			<Result response={response} />
 			<button onClick={getNewRandomNumber} className='border px-2 rounded-lg'>
 				Cambiar Número
 			</button>
