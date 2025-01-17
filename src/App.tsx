@@ -10,6 +10,7 @@ export default function App() {
 	const {language, changeLanguage, playAudio } = useLanguage({number})
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
+	const isResponseChange = useRef(inputRef.current?.value)
 
 	function getNewRandomNumber() {
 		setNumber(Math.floor(Math.random() * 999) + 1)
@@ -19,12 +20,13 @@ export default function App() {
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
+		if (isResponseChange.current === inputRef.current?.value) return
 		const response = inputRef.current?.value || ''
 
 		if (!isInputValid(response)) return setResponse(RESPONSE_STATE.INVALID)
-
 		const isCorrect = numberToText(number) === response.trim().toLowerCase()
 		setResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
+		isResponseChange.current = inputRef.current?.value
 	}
 
 	return (
