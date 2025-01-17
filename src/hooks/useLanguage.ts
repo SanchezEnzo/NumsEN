@@ -5,12 +5,12 @@ import { LANGUAGES } from "../constants/languages"
 type Language = typeof LANGUAGES[keyof typeof LANGUAGES]
 
 export function useLanguage({ number }: { number: number }) {
-	const [language, setLanguage] = useState <Language>('en-GB')
+	const [language, setLanguage] = useState <Language>(LANGUAGES.BRITISH)
 
-	function playAudio() {
+	function playAudio(lang: Language) {
 		window.speechSynthesis.cancel()
 		const utterance = new SpeechSynthesisUtterance(numberToText(number))
-		utterance.lang = language
+		utterance.lang = lang
 		window.speechSynthesis.speak(utterance)
 	}
 

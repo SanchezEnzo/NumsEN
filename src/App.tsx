@@ -4,16 +4,17 @@ import { isInputValid } from './service/isInputInvalid'
 import { useLanguage } from './hooks/useLanguage'
 import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
+import { LANGUAGES } from './constants/languages'
 
 export default function App() {
-	const [number, setNumber] = useState(() => Math.floor(Math.random() * 999999) + 1)
-	const {language, changeLanguage, playAudio } = useLanguage({number})
+	const [number, setNumber] = useState(() => Math.floor(Math.random() * 999) + 1)
+	const {language, playAudio } = useLanguage({number})
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
 	const formatedNumber = new Intl.NumberFormat('de-DE').format(number)
 	function getNewRandomNumber() {
-		setNumber(Math.floor(Math.random() * 999999) + 1)
+		setNumber(Math.floor(Math.random() * 999) + 1)
 		setResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
 	}
@@ -54,28 +55,21 @@ export default function App() {
 				</button>
 				<button
 					type='button'
-					onClick={() => changeLanguage('en-GB')}
+					onClick={() => playAudio(LANGUAGES.BRITISH)}
 					className={`border px-2 rounded-lg ${
-						language === 'en-GB' ? 'bg-gray-500' : ''
+						language === LANGUAGES.BRITISH ? 'bg-gray-500' : ''
 					}`}
 				>
 					UK
 				</button>
 				<button
 					type='button'
-					onClick={() => changeLanguage('en-US')}
+					onClick={() => playAudio(LANGUAGES.USA)}
 					className={`border px-2 rounded-lg ${
-						language === 'en-US' ? 'bg-gray-500' : ''
+						language === LANGUAGES.USA ? 'bg-gray-500' : ''
 					}`}
 				>
 					US
-				</button>
-				<button
-					type='button'
-					onClick={playAudio}
-					className='border px-2 rounded-lg'
-				>
-					Escuchar
 				</button>
 			</form>
 			<Result response={response} />
@@ -85,3 +79,5 @@ export default function App() {
 		</div>
 	)
 }
+
+//Todo: Agregar rango
