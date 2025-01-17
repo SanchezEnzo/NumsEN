@@ -6,14 +6,14 @@ import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
 
 export default function App() {
-	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
+	const [number, setNumber] = useState(() => Math.floor(Math.random() * 999999) + 1)
 	const {language, changeLanguage, playAudio } = useLanguage({number})
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
-
+	const formatedNumber = new Intl.NumberFormat('de-DE').format(number)
 	function getNewRandomNumber() {
-		setNumber(Math.floor(Math.random() * 999) + 1)
+		setNumber(Math.floor(Math.random() * 999999) + 1)
 		setResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
 	}
@@ -31,7 +31,7 @@ export default function App() {
 
 	return (
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
-			<p className='text-[10rem]'>{number}</p>
+			<p className='text-[10rem]'>{formatedNumber}</p>
 			<form className='flex gap-2' onSubmit={handleSubmit}>
 				<label htmlFor='response' className='sr-only'>
 					Escribe el número en texto
@@ -56,7 +56,7 @@ export default function App() {
 					type='button'
 					onClick={() => changeLanguage('en-GB')}
 					className={`border px-2 rounded-lg ${
-						language === 'en-GB' ? 'bg-gray-200' : ''
+						language === 'en-GB' ? 'bg-gray-500' : ''
 					}`}
 				>
 					UK
@@ -65,7 +65,7 @@ export default function App() {
 					type='button'
 					onClick={() => changeLanguage('en-US')}
 					className={`border px-2 rounded-lg ${
-						language === 'en-US' ? 'bg-gray-200' : ''
+						language === 'en-US' ? 'bg-gray-500' : ''
 					}`}
 				>
 					US
