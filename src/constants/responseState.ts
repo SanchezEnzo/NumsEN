@@ -1,0 +1,6 @@
+export enum RESPONSE_STATE {
+	INIT,
+	INVALID,
+	RIGHT,
+	WRONG,
+} 
