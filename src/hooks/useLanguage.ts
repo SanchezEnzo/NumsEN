@@ -7,10 +7,10 @@ type Language = typeof LANGUAGES[keyof typeof LANGUAGES]
 export function useLanguage({ number }: { number: number }) {
 	const [language, setLanguage] = useState <Language>(LANGUAGES.BRITISH)
 
-	function playAudio(lang: Language) {
+	function playAudio() {
 		window.speechSynthesis.cancel()
 		const utterance = new SpeechSynthesisUtterance(numberToText(number))
-		utterance.lang = lang
+		utterance.lang = language
 		window.speechSynthesis.speak(utterance)
 	}
 

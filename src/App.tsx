@@ -7,12 +7,15 @@ import { RESPONSE_STATE } from './constants/responseState'
 import { LANGUAGES } from './constants/languages'
 
 export default function App() {
-	const [number, setNumber] = useState(() => Math.floor(Math.random() * 999) + 1)
-	const {language, playAudio } = useLanguage({number})
+	const [number, setNumber] = useState(
+		() => Math.floor(Math.random() * 999) + 1
+	)
+	const { language, changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
 	const formatedNumber = new Intl.NumberFormat('de-DE').format(number)
+
 	function getNewRandomNumber() {
 		setNumber(Math.floor(Math.random() * 999) + 1)
 		setResponse(RESPONSE_STATE.INIT)
@@ -35,7 +38,7 @@ export default function App() {
 			<p className='text-[10rem]'>{formatedNumber}</p>
 			<form className='flex gap-2' onSubmit={handleSubmit}>
 				<label htmlFor='response' className='sr-only'>
-					Escribe el número en texto
+					Write the number in text
 				</label>
 				<input
 					id='response'
@@ -51,33 +54,39 @@ export default function App() {
 					ref={inputRef}
 				/>
 				<button type='submit' className='border px-2 rounded-lg'>
-					Verificar
-				</button>
-				<button
-					type='button'
-					onClick={() => playAudio(LANGUAGES.BRITISH)}
-					className={`border px-2 rounded-lg ${
-						language === LANGUAGES.BRITISH ? 'bg-gray-500' : ''
-					}`}
-				>
-					UK
-				</button>
-				<button
-					type='button'
-					onClick={() => playAudio(LANGUAGES.USA)}
-					className={`border px-2 rounded-lg ${
-						language === LANGUAGES.USA ? 'bg-gray-500' : ''
-					}`}
-				>
-					US
+					Check
 				</button>
 			</form>
+			<button
+				type='button'
+				onClick={() => changeLanguage(LANGUAGES.BRITISH)}
+				className={`border px-2 rounded-lg ${
+					language === LANGUAGES.BRITISH ? 'bg-gray-500' : ''
+				}`}
+			>
+				UK
+			</button>
+			<button
+				type='button'
+				onClick={() => changeLanguage(LANGUAGES.USA)}
+				className={`border px-2 rounded-lg ${
+					language === LANGUAGES.USA ? 'bg-gray-500' : ''
+				}`}
+			>
+				US
+			</button>
+			<button onClick={() => playAudio()} className='border px-2 rounded-lg'>
+				Listen
+			</button>
 			<Result response={response} />
 			<button onClick={getNewRandomNumber} className='border px-2 rounded-lg'>
-				Cambiar Número
+				Change Number{' '}
 			</button>
 		</div>
 	)
 }
 
 //Todo: Agregar rango
+//Todo: Assistant
+//Todo: Cambiar de numero en respuesta correcta
+//Todo: Agregar Lista de lenuajes
