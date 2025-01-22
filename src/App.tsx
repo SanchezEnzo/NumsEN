@@ -4,13 +4,13 @@ import { isInputValid } from './service/isInputInvalid'
 import { useLanguage } from './hooks/useLanguage'
 import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
-import { LANGUAGES } from './constants/languages'
+import { LANGUAGES_TO_SHOW } from './constants/languages'
 
 export default function App() {
 	const [number, setNumber] = useState(
 		() => Math.floor(Math.random() * 999) + 1
 	)
-	const { language, changeLanguage, playAudio } = useLanguage({ number })
+	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
@@ -36,50 +36,50 @@ export default function App() {
 	return (
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
 			<p className='text-[10rem]'>{formatedNumber}</p>
-			<form className='flex gap-2' onSubmit={handleSubmit}>
-				<label htmlFor='response' className='sr-only'>
-					Write the number in text
-				</label>
-				<input
-					id='response'
-					type='text'
-					className={`border ${
-						response === RESPONSE_STATE.RIGHT
-							? 'border-red-500'
-							: 'border-gray-300'
-					}`}
-					name='response'
-					autoComplete='off'
-					aria-invalid={response === RESPONSE_STATE.RIGHT}
-					ref={inputRef}
-				/>
-				<button type='submit' className='border px-2 rounded-lg'>
-					Check
-				</button>
-			</form>
-			<button
-				type='button'
-				onClick={() => changeLanguage(LANGUAGES.BRITISH)}
-				className={`border px-2 rounded-lg ${
-					language === LANGUAGES.BRITISH ? 'bg-gray-500' : ''
-				}`}
-			>
-				UK
-			</button>
-			<button
-				type='button'
-				onClick={() => changeLanguage(LANGUAGES.USA)}
-				className={`border px-2 rounded-lg ${
-					language === LANGUAGES.USA ? 'bg-gray-500' : ''
-				}`}
-			>
-				US
-			</button>
-			<button onClick={() => playAudio()} className='border px-2 rounded-lg'>
-				Listen
-			</button>
+			<div className='flex gap-6'>
+				<form className='flex gap-2' onSubmit={handleSubmit}>
+					<label htmlFor='response' className='sr-only'>
+						Write the number in text
+					</label>
+					<input
+						id='response'
+						type='text'
+						className={`outline ${
+							response === RESPONSE_STATE.RIGHT
+								? 'outline-red-500'
+								: 'outline-gray-300'
+						}`}
+						name='response'
+						autoComplete='off'
+						aria-invalid={response === RESPONSE_STATE.RIGHT}
+						ref={inputRef}
+					/>
+					<button type='submit' className='outline px-2 rounded-lg'>
+						Check
+					</button>
+				</form>
+				<div className='flex gap-2'>
+					<input
+						list='languages'
+						defaultValue={LANGUAGES_TO_SHOW[0]}
+						className='w-[70px] pl-1 outline'
+						onChange={e => changeLanguage(e)}
+					/>
+					<datalist id='languages'>
+						{LANGUAGES_TO_SHOW.map((lang, index) => (
+							<option value={lang} key={index}></option>
+						))}
+					</datalist>
+					<button
+						onClick={() => playAudio()}
+						className='outline px-2 rounded-lg'
+					>
+						Listen
+					</button>
+				</div>
+			</div>
 			<Result response={response} />
-			<button onClick={getNewRandomNumber} className='border px-2 rounded-lg'>
+			<button onClick={getNewRandomNumber} className='outline px-2 rounded-lg'>
 				Change Number{' '}
 			</button>
 		</div>

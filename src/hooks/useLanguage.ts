@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { numberToText } from "../service/numberToString"
-import { LANGUAGES } from "../constants/languages"
+import { LANGUAGES_TO_VOICE } from "../constants/languages"
 
-type Language = typeof LANGUAGES[keyof typeof LANGUAGES]
+type Language = typeof LANGUAGES_TO_VOICE[keyof typeof LANGUAGES_TO_VOICE]
 
 export function useLanguage({ number }: { number: number }) {
-	const [language, setLanguage] = useState <Language>(LANGUAGES.BRITISH)
+	const [language, setLanguage] = useState<Language>(LANGUAGES_TO_VOICE.UK)
 
 	function playAudio() {
 		window.speechSynthesis.cancel()
@@ -14,8 +14,8 @@ export function useLanguage({ number }: { number: number }) {
 		window.speechSynthesis.speak(utterance)
 	}
 
-	const changeLanguage = (lang: Language) => {
-		setLanguage(lang)
+	const changeLanguage = (e: ChangeEvent<HTMLInputElement>) => {
+		setLanguage(LANGUAGES_TO_VOICE[e.target.value as keyof typeof LANGUAGES_TO_VOICE])
 	}
 
 	return { language, changeLanguage, playAudio }
