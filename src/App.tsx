@@ -8,7 +8,7 @@ import { LANGUAGES_TO_SHOW } from './constants/languages'
 
 export default function App() {
 	const [number, setNumber] = useState(
-		() => Math.floor(Math.random() * 999) + 1
+		() => Math.floor(Math.random() * 9) + 1
 	)
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
@@ -17,7 +17,7 @@ export default function App() {
 	const formatedNumber = new Intl.NumberFormat('de-DE').format(number)
 
 	function getNewRandomNumber() {
-		setNumber(Math.floor(Math.random() * 999) + 1)
+		setNumber(Math.floor(Math.random() * 9) + 1)
 		setResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
 	}
@@ -31,6 +31,12 @@ export default function App() {
 		const isCorrect = numberToText(number) === response.trim().toLowerCase()
 		setResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
 		isResponseChange.current = inputRef.current?.value
+
+		if (isCorrect) {
+			setTimeout(() => {
+				getNewRandomNumber()
+			}, 2500)
+		}
 	}
 
 	return (
@@ -82,7 +88,7 @@ export default function App() {
 	)
 }
 
-//Todo: Agregar rango
+//Todo: Agregar rango de numeros a elegir
 //Todo: Assistant
 //Todo: Cambiar de numero en respuesta correcta
 //Todo: Agregar Lista de lenuajes
