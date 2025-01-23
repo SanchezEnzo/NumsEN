@@ -59,17 +59,13 @@ export default function App() {
 					</button>
 				</form>
 				<div className='flex gap-2'>
-					<input
-						list='languages'
-						defaultValue={LANGUAGES_TO_SHOW[0]}
-						className='w-[70px] pl-1 outline'
-						onChange={e => changeLanguage(e)}
-					/>
-					<datalist id='languages'>
+					<select onChange={(e) => changeLanguage(e)}>
 						{LANGUAGES_TO_SHOW.map((lang, index) => (
-							<option value={lang} key={index}></option>
+							<option value={lang} key={index}>
+								{lang}
+							</option>
 						))}
-					</datalist>
+					</select>
 					<button
 						onClick={() => playAudio()}
 						className='outline px-2 rounded-lg'

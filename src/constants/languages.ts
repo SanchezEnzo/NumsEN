@@ -3,4 +3,5 @@ export const LANGUAGES_TO_VOICE = {
 	US: "en-US",
 } 
 
-export const LANGUAGES_TO_SHOW = ['UK', 'US'] as const
+export const LANGUAGES_TO_SHOW = Object.keys(LANGUAGES_TO_VOICE) as Array<keyof typeof LANGUAGES_TO_VOICE>
+
