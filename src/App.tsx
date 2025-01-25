@@ -6,6 +6,7 @@ import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
 import { LANGUAGES_TO_SHOW } from './constants/languages'
 import { Button } from './components/Button'
+import { NumberTicker } from './components/ui/number-ticker'
 
 export default function App() {
 	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
@@ -13,7 +14,7 @@ export default function App() {
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
-	const formatedNumber = new Intl.NumberFormat('de-DE').format(number)
+	const formatedNumber = +new Intl.NumberFormat('de-DE').format(number)
 
 	function getNewRandomNumber() {
 		setNumber(Math.floor(Math.random() * 9) + 1)
@@ -39,7 +40,8 @@ export default function App() {
 	}
 
 	return (
-		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
+		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background text-foreground'>
+			<NumberTicker value={formatedNumber}></NumberTicker>
 			<p className='text-[10rem]'>{formatedNumber}</p>
 			<div className='flex gap-6'>
 				<form className='flex gap-2 relative' onSubmit={handleSubmit}>
@@ -49,19 +51,17 @@ export default function App() {
 					<input
 						id='response'
 						type='text'
-						className='outline outline-[0.1px] pl-1 focus:outline focus:outline-stone-100'
+						className='outline outline-[0.1px] pl-1 bg-input text-foreground focus:outline focus:outline-ring'
 						name='response'
 						autoComplete='off'
 						aria-invalid={response === RESPONSE_STATE.RIGHT}
 						ref={inputRef}
 					/>
-					<Button>
-						Check
-					</Button>
+					<Button>Check</Button>
 				</form>
 				<div className='flex gap-2'>
 					<select
-						className='outline outline-[0.1px] focus:outline focus:outline-stone-100 '
+						className='outline outline-[0.1px] bg-card text-card-foreground focus:outline focus:outline-ring'
 						onChange={e => changeLanguage(e)}
 					>
 						{LANGUAGES_TO_SHOW.map((lang, index) => (
@@ -74,7 +74,7 @@ export default function App() {
 					<Button handleClick={playAudio}>Listen</Button>
 				</div>
 			</div>
-			<div className='w-full flex justify-center '>
+			<div className='w-full flex justify-center'>
 				<div className='w-56 flex relative'>
 					<Result response={response} />
 				</div>
@@ -83,6 +83,7 @@ export default function App() {
 		</div>
 	)
 }
+
 
 //Todo: Agregar rango de numeros a elegir
 //Todo: Assistant
