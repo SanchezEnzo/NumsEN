@@ -7,9 +7,7 @@ import { RESPONSE_STATE } from './constants/responseState'
 import { LANGUAGES_TO_SHOW } from './constants/languages'
 
 export default function App() {
-	const [number, setNumber] = useState(
-		() => Math.floor(Math.random() * 9) + 1
-	)
+	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -43,29 +41,31 @@ export default function App() {
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
 			<p className='text-[10rem]'>{formatedNumber}</p>
 			<div className='flex gap-6'>
-				<form className='flex gap-2' onSubmit={handleSubmit}>
+				<form className='flex gap-2 relative' onSubmit={handleSubmit}>
 					<label htmlFor='response' className='sr-only'>
 						Write the number in text
 					</label>
 					<input
 						id='response'
 						type='text'
-						className={`outline ${
-							response === RESPONSE_STATE.RIGHT
-								? 'outline-red-500'
-								: 'outline-gray-300'
-						}`}
+						className='outline outline-[0.1px] pl-1 focus:outline focus:outline-stone-100'
 						name='response'
 						autoComplete='off'
 						aria-invalid={response === RESPONSE_STATE.RIGHT}
 						ref={inputRef}
 					/>
-					<button type='submit' className='outline px-2 rounded-lg'>
+					<button
+						type='submit'
+						className='outline outline-[0.1px] px-2 rounded-lg'
+					>
 						Check
 					</button>
 				</form>
 				<div className='flex gap-2'>
-					<select onChange={(e) => changeLanguage(e)}>
+					<select
+						className='outline outline-[0.1px] focus:outline focus:outline-stone-100 '
+						onChange={e => changeLanguage(e)}
+					>
 						{LANGUAGES_TO_SHOW.map((lang, index) => (
 							<option value={lang} key={index}>
 								{lang}
@@ -74,14 +74,21 @@ export default function App() {
 					</select>
 					<button
 						onClick={() => playAudio()}
-						className='outline px-2 rounded-lg'
+						className='outline px-2 rounded-lg outline-[0.1px]'
 					>
 						Listen
 					</button>
 				</div>
 			</div>
-			<Result response={response} />
-			<button onClick={getNewRandomNumber} className='outline px-2 rounded-lg'>
+			<div className='w-full flex justify-center '>
+				<div className='w-56 flex relative'>
+					<Result response={response} />
+				</div>
+			</div>
+			<button
+				onClick={getNewRandomNumber}
+				className='outline outline-[0.1px] px-2 rounded-lg'
+			>
 				Change Number{' '}
 			</button>
 		</div>
