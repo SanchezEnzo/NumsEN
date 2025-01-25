@@ -9,7 +9,7 @@ import { Button } from './components/Button'
 import { NumberTicker } from './components/ui/number-ticker'
 
 export default function App() {
-	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
+	const [number, setNumber] = useState(() => Math.floor(Math.random() * 999) + 1)
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -17,7 +17,7 @@ export default function App() {
 	const formatedNumber = +new Intl.NumberFormat('de-DE').format(number)
 
 	function getNewRandomNumber() {
-		setNumber(Math.floor(Math.random() * 9) + 1)
+		setNumber(Math.floor(Math.random() * 999) + 1)
 		setResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
 	}
@@ -41,8 +41,10 @@ export default function App() {
 
 	return (
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background text-foreground'>
-			<NumberTicker value={formatedNumber}></NumberTicker>
-			<p className='text-[10rem]'>{formatedNumber}</p>
+			<NumberTicker
+				value={formatedNumber}
+				className='text-[10rem]'
+			></NumberTicker>
 			<div className='flex gap-6'>
 				<form className='flex gap-2 relative' onSubmit={handleSubmit}>
 					<label htmlFor='response' className='sr-only'>
