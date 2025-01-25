@@ -5,6 +5,7 @@ import { useLanguage } from './hooks/useLanguage'
 import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
 import { LANGUAGES_TO_SHOW } from './constants/languages'
+import { Button } from './components/Button'
 
 export default function App() {
 	const [number, setNumber] = useState(() => Math.floor(Math.random() * 9) + 1)
@@ -54,12 +55,9 @@ export default function App() {
 						aria-invalid={response === RESPONSE_STATE.RIGHT}
 						ref={inputRef}
 					/>
-					<button
-						type='submit'
-						className='outline outline-[0.1px] px-2 rounded-lg'
-					>
+					<Button>
 						Check
-					</button>
+					</Button>
 				</form>
 				<div className='flex gap-2'>
 					<select
@@ -72,12 +70,8 @@ export default function App() {
 							</option>
 						))}
 					</select>
-					<button
-						onClick={() => playAudio()}
-						className='outline px-2 rounded-lg outline-[0.1px]'
-					>
-						Listen
-					</button>
+
+					<Button handleClick={playAudio}>Listen</Button>
 				</div>
 			</div>
 			<div className='w-full flex justify-center '>
@@ -85,12 +79,7 @@ export default function App() {
 					<Result response={response} />
 				</div>
 			</div>
-			<button
-				onClick={getNewRandomNumber}
-				className='outline outline-[0.1px] px-2 rounded-lg'
-			>
-				Change Number{' '}
-			</button>
+			<Button handleClick={getNewRandomNumber}>Change Number</Button>
 		</div>
 	)
 }
