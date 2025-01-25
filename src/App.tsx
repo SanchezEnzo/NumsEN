@@ -7,17 +7,20 @@ import { RESPONSE_STATE } from './constants/responseState'
 import { LANGUAGES_TO_SHOW } from './constants/languages'
 import { Button } from './components/Button'
 import { NumberTicker } from './components/ui/number-ticker'
+import NumberFlow, { continuous } from '@number-flow/react'
 
 export default function App() {
-	const [number, setNumber] = useState(() => Math.floor(Math.random() * 999) + 1)
+	const [number, setNumber] = useState(
+		() => Math.floor(Math.random() * 9999) + 1
+	)
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
-	const formatedNumber = +new Intl.NumberFormat('de-DE').format(number)
+	
 
 	function getNewRandomNumber() {
-		setNumber(Math.floor(Math.random() * 999) + 1)
+		setNumber(Math.floor(Math.random() * 9999) + 1)
 		setResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
 	}
@@ -41,10 +44,15 @@ export default function App() {
 
 	return (
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background text-foreground'>
-			<NumberTicker
-				value={formatedNumber}
+			<NumberFlow
+				value={number}
+				locales='ar-OM-u-nu-latn'
 				className='text-[10rem]'
-			></NumberTicker>
+				spinTiming={{ duration: 500, easing: 'ease-in-out' }}
+				opacityTiming={{ duration: 350, easing: 'ease-out' }}
+				plugins={[continuous]}
+				willChange
+			></NumberFlow>
 			<div className='flex gap-6'>
 				<form className='flex gap-2 relative' onSubmit={handleSubmit}>
 					<label htmlFor='response' className='sr-only'>
@@ -86,8 +94,9 @@ export default function App() {
 	)
 }
 
-
 //Todo: Agregar rango de numeros a elegir
 //Todo: Assistant
 //Todo: Cambiar de numero en respuesta correcta
 //Todo: Agregar Lista de lenuajes
+//Todo: Botton sacar animaciones
+//Todo: Elegir formato de número
