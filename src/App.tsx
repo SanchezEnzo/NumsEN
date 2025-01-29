@@ -6,12 +6,12 @@ import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
 import { LANGUAGES_TO_SHOW } from './constants/languages'
 import { Button } from './components/Button'
-import { NumberTicker } from './components/ui/number-ticker'
+// import { NumberTicker } from './components/ui/number-ticker'
 import NumberFlow, { continuous } from '@number-flow/react'
 
 export default function App() {
 	const [number, setNumber] = useState(
-		() => Math.floor(Math.random() * 9999) + 1
+		() => Math.floor(Math.random() * 9) + 1
 	)
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
