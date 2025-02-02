@@ -30,13 +30,13 @@ export function useForm () {
 	}
 
 	const updateResponse = (response: RESPONSE_STATE) => setResponse(response)
-	const updateNumber = (number: number) => setNumber(number)
+	const changeNumber = (number: number) => setNumber(number)
 	
 	return {
 		number,
 		response,
 		updateResponse,
-		updateNumber,
+		changeNumber,
 		handleSubmit,
 		inputRef,
 	}

@@ -15,11 +15,10 @@ export default function App () {
 		response,
 		updateResponse,
 		inputRef,
-		updateNumber,
+		changeNumber,
 		handleSubmit,
 	} = useForm()
 	const { changeLanguage, playAudio } = useLanguage({ number })
-
 
 	function reseatToInitialValues () {
 		updateResponse(RESPONSE_STATE.INIT)
@@ -60,7 +59,7 @@ export default function App () {
 				</div>
 			</div>
 			<Button handleClick={() => {
-				updateNumber(getNewRandomNumber()) 
+				changeNumber(getNewRandomNumber()) 
 				reseatToInitialValues()
 			}}>Change Number</Button>
 		</div>
