@@ -8,19 +8,14 @@ import NumberFlow, { continuous } from '@number-flow/react'
 import getNewRandomNumber from './service/getRandomNumber'
 import { useForm } from './hooks/useForm'
 import Form from './components/Form'
+import { useNumber } from './hooks/useNumber'
 
-export default function App () {
-	const {
-		number,
-		response,
-		updateResponse,
-		inputRef,
-		changeNumber,
-		handleSubmit,
-	} = useForm()
+export default function App() {
+	const { number, changeNumber } = useNumber()
+	const { response, updateResponse, inputRef, handleSubmit } = useForm()
 	const { changeLanguage, playAudio } = useLanguage({ number })
 
-	function reseatToInitialValues () {
+	function reseatToInitialValues() {
 		updateResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
 	}
@@ -37,7 +32,11 @@ export default function App () {
 				willChange
 			></NumberFlow>
 			<div className='flex gap-6'>
-				<Form response={response} handleSubmit={handleSubmit} inputRef={inputRef}/>
+				<Form
+					response={response}
+					handleSubmit={handleSubmit}
+					inputRef={inputRef}
+				/>
 				<div className='flex gap-2'>
 					<select
 						className='outline outline-[0.1px] bg-card text-card-foreground focus:outline focus:outline-ring'
@@ -58,10 +57,14 @@ export default function App () {
 					<Result response={response} />
 				</div>
 			</div>
-			<Button handleClick={() => {
-				changeNumber(getNewRandomNumber()) 
-				reseatToInitialValues()
-			}}>Change Number</Button>
+			<Button
+				handleClick={() => {
+					changeNumber(getNewRandomNumber())
+					reseatToInitialValues()
+				}}
+			>
+				Change Number
+			</Button>
 		</div>
 	)
 }
