@@ -1,7 +1,6 @@
 import { useLanguage } from './hooks/useLanguage'
 import { Result } from './components/Result'
 import { RESPONSE_STATE } from './constants/responseState'
-import { LANGUAGES_TO_SHOW } from './constants/languages'
 import { Button } from './components/Button'
 // import { NumberTicker } from './components/ui/number-ticker'
 import NumberFlow, { continuous } from '@number-flow/react'
@@ -9,11 +8,12 @@ import getNewRandomNumber from './service/getRandomNumber'
 import { useForm } from './hooks/useForm'
 import Form from './components/Form'
 import { useNumber } from './hooks/useNumber'
+import { Select } from './components/Select'
 
 export default function App() {
 	const { number, changeNumber } = useNumber()
 	const { response, updateResponse, inputRef, handleSubmit } = useForm()
-	const { changeLanguage, playAudio } = useLanguage({ number })
+	const {changeLanguage, playAudio } = useLanguage({ number })
 
 	function reseatToInitialValues() {
 		updateResponse(RESPONSE_STATE.INIT)
@@ -38,17 +38,7 @@ export default function App() {
 					inputRef={inputRef}
 				/>
 				<div className='flex gap-2'>
-					<select
-						className='outline outline-[0.1px] bg-card text-card-foreground focus:outline focus:outline-ring'
-						onChange={e => changeLanguage(e)}
-					>
-						{LANGUAGES_TO_SHOW.map((lang, index) => (
-							<option value={lang} key={index}>
-								{lang}
-							</option>
-						))}
-					</select>
-
+					<Select changeLanguage={changeLanguage} />
 					<Button
 						handleClick={playAudio}
 						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary'
