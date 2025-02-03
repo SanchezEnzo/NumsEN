@@ -4,125 +4,16 @@
 @layer base {
 	/* Definición de las variables globales */
 	:root {
-		--radius: 8px;
-		--background: #ece9e6; /* fallback for old browsers */
-		--background: -webkit-linear-gradient(
-			to right,
-			#ffffff,
-			#ece9e6
-		); /* Chrome 10-25, Safari 5.1-6 */
-		--background: linear-gradient(
-			to right,
-			#ffffff,
-			#ece9e6
-		); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		/* --background: 0 0% 100%; */
-		--foreground: 0 0% 0%;
-		--card: 0 0% 100%;
-		--card-foreground: 0 0% 0%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 0 0% 0%;
-		--primary: 220 98% 61%;
-		--primary-foreground: 0 0% 100%;
-		--secondary: 240 4% 46%;
-		--secondary-foreground: 0 0% 100%;
-		--muted: 240 5% 90%;
-		--muted-foreground: 240 5% 20%;
-		--accent: 340 75% 60%;
-		--accent-foreground: 0 0% 100%;
-		--destructive: 0 78% 63%;
-		--destructive-foreground: 0 0% 100%;
-		--border: 240 5% 83%;
-		--input: 240 5% 93%;
-		--ring: 220 98% 61%;
-		--chart-1: 200 70% 50%;
-		--chart-2: 300 70% 50%;
-		--chart-3: 100 70% 50%;
-		--chart-4: 50 70% 50%;
-		--chart-5: 0 70% 50%;
+--text: #e6e7ef;
+--background: #0a0b14;
+--primary: #9ca0d6;
+--secondary: #252b75;
+--accent: #5861d8;
+--button-primary: #9ca0d6;
+--button-secondary :#252b75;
+--buttonText-primary: #0a0b14;
+--buttonText-secondary: #e6e7ef;
+--outline-primary: #7b7fba;
+--outline-secondary: #1c215e;
 	}
-
-	/* Estilos para el modo oscuro */
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--background: 0 0% 10%;
-			--foreground: 0 0% 90%;
-			--card: 0 0% 15%;
-			--card-foreground: 0 0% 85%;
-			--popover: 0 0% 15%;
-			--popover-foreground: 0 0% 85%;
-			--primary: 220 98% 61%;
-			--primary-foreground: 0 0% 100%;
-			--secondary: 240 5% 40%;
-			--secondary-foreground: 0 0% 90%;
-			--muted: 240 5% 20%;
-			--muted-foreground: 240 5% 80%;
-			--accent: 340 70% 40%;
-			--accent-foreground: 0 0% 100%;
-			--destructive: 0 78% 50%;
-			--destructive-foreground: 0 0% 100%;
-			--border: 240 5% 30%;
-			--input: 240 5% 20%;
-			--ring: 220 98% 61%;
-			--chart-1: 200 70% 50%;
-			--chart-2: 300 70% 50%;
-			--chart-3: 100 70% 50%;
-			--chart-4: 50 70% 50%;
-			--chart-5: 0 70% 50%;
-		}
-	}
-
-	/* Soporte para la clase "dark" en lugar de `prefers-color-scheme` */
-	.dark {
-		--background: 0 0% 10%;
-		--foreground: 0 0% 90%;
-		--card: 0 0% 15%;
-		--card-foreground: 0 0% 85%;
-		--popover: 0 0% 15%;
-		--popover-foreground: 0 0% 85%;
-		--primary: 220 98% 61%;
-		--primary-foreground: 0 0% 100%;
-		--secondary: 240 5% 40%;
-		--secondary-foreground: 0 0% 90%;
-		--muted: 240 5% 20%;
-		--muted-foreground: 240 5% 80%;
-		--accent: 340 70% 40%;
-		--accent-foreground: 0 0% 100%;
-		--destructive: 0 78% 50%;
-		--destructive-foreground: 0 0% 100%;
-		--border: 240 5% 30%;
-		--input: 240 5% 20%;
-		--ring: 220 98% 61%;
-		--chart-1: 200 70% 50%;
-		--chart-2: 300 70% 50%;
-		--chart-3: 100 70% 50%;
-		--chart-4: 50 70% 50%;
-		--chart-5: 0 70% 50%;
-	}
-}
-
-@layer base {
-	* {
-		@apply border-border;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
-}
-
-.light {
-	background: #ece9e6; /* fallback for old browsers */
-	background: -webkit-linear-gradient(
-		to right,
-		#ffffff,
-		#ece9e6
-	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to right,
-		#ffffff,
-		#ece9e6
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.dakr {
 }

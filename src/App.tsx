@@ -25,7 +25,7 @@ export default function App() {
 			<NumberFlow
 				value={number}
 				locales='ar-OM-u-nu-latn'
-				className='text-[10rem]'
+				className='text-[10rem] text-primary'
 				spinTiming={{ duration: 500, easing: 'ease-in-out' }}
 				opacityTiming={{ duration: 350, easing: 'ease-out' }}
 				plugins={[continuous]}
@@ -49,7 +49,12 @@ export default function App() {
 						))}
 					</select>
 
-					<Button handleClick={playAudio}>Listen</Button>
+					<Button
+						handleClick={playAudio}
+						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary'
+					>
+						Listen
+					</Button>
 				</div>
 			</div>
 			<div className='w-full flex justify-center'>
@@ -62,6 +67,7 @@ export default function App() {
 					changeNumber(getNewRandomNumber())
 					reseatToInitialValues()
 				}}
+				classButton='text-buttonText-secondary bg-secondary outline-outline-secondary'
 			>
 				Change Number
 			</Button>
