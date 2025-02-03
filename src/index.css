@@ -8,12 +8,14 @@
 --background: #0a0b14;
 --primary: #9ca0d6;
 --secondary: #252b75;
---accent: #5861d8;
+--accent: #414ad1;
 --button-primary: #9ca0d6;
 --button-secondary :#252b75;
 --buttonText-primary: #0a0b14;
 --buttonText-secondary: #e6e7ef;
 --outline-primary: #7b7fba;
 --outline-secondary: #1c215e;
+--incorrect: red;
+--correct: green;
 	}
 }
