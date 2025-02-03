@@ -12,7 +12,7 @@ import { Select } from './components/Select'
 
 export default function App() {
 	const { number, changeNumber } = useNumber()
-	const { response, updateResponse, inputRef, handleSubmit } = useForm()
+	const { response, updateResponse, inputRef, handleSubmit } = useForm({number, changeNumber})
 	const {changeLanguage, playAudio } = useLanguage({ number })
 
 	function reseatToInitialValues() {
@@ -25,7 +25,8 @@ export default function App() {
 			<NumberFlow
 				value={number}
 				locales='ar-OM-u-nu-latn'
-				className='text-[10rem] text-primary'
+				className={`text-[10rem] text-accent ${
+					(response === RESPONSE_STATE.INVALID || response === RESPONSE_STATE.WRONG) && 'animate-shake'}`}
 				spinTiming={{ duration: 500, easing: 'ease-in-out' }}
 				opacityTiming={{ duration: 350, easing: 'ease-out' }}
 				plugins={[continuous]}

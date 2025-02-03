@@ -6,7 +6,6 @@ type Language = typeof LANGUAGES_TO_VOICE[keyof typeof LANGUAGES_TO_VOICE]
 
 export function useLanguage({ number }: { number: number }) {
 	const [language, setLanguage] = useState<Language>(LANGUAGES_TO_VOICE.UK)
-	console.log(language)
 	function playAudio() {
 		window.speechSynthesis.cancel()
 		const utterance = new SpeechSynthesisUtterance(numberToText(number))

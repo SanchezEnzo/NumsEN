@@ -3,13 +3,12 @@ import getNewRandomNumber from "@/service/getRandomNumber"
 import { isInputValid } from "@/service/isInputInvalid"
 import { numberToText } from "@/service/numberToString"
 import { FormEvent, useRef, useState } from "react"
-import { useNumber } from "./useNumber"
 
-export function useForm () {
-	 const {number, changeNumber}=useNumber()
+export function useForm ({number, changeNumber}: {number: number, changeNumber: (number: number) => void}) {
 		const inputRef = useRef<HTMLInputElement>(null)
-		const isResponseChange = useRef(inputRef.current?.value)
-		
+	const isResponseChange = useRef(inputRef.current?.value)
+	
+	
 	const [response, setResponse] = useState<RESPONSE_STATE>(RESPONSE_STATE.INIT)
 	
 		function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -21,7 +20,6 @@ export function useForm () {
 			const isCorrect = numberToText(number) === response.trim().toLowerCase()
 			setResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
 			isResponseChange.current = inputRef.current?.value
-	
 			if (isCorrect) {
 				setTimeout(() => {
 					changeNumber(getNewRandomNumber())
