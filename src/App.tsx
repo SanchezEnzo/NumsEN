@@ -1,5 +1,4 @@
 import { useLanguage } from './hooks/useLanguage'
-import { Result } from './components/Result'
 import { Button } from './components/Button'
 // import { NumberTicker } from './components/ui/number-ticker'
 import NumberFlow, { continuous } from '@number-flow/react'
@@ -9,6 +8,7 @@ import Form from './components/Form'
 import { useNumber } from './hooks/useNumber'
 import { Select } from './components/Select'
 import { RESPONSE_STATE } from './constants/responseState'
+import { Volume } from './components/icons/Volumen'
 
 export default function App () {
 	const { number, changeNumber } = useNumber()
@@ -25,9 +25,12 @@ export default function App () {
 			<NumberFlow
 				value={number}
 				locales='ar-OM-u-nu-latn'
-				className={`text-[10rem] transition-colors duration-500  ${
-					response === RESPONSE_STATE.WRONG || response === RESPONSE_STATE.INVALID ? 'animate-shake text-red-500' : 'text-accent'
-				}`}
+				className={`text-[10rem] transition-colors duration-700  ${
+					response === RESPONSE_STATE.WRONG ||
+					response === RESPONSE_STATE.INVALID
+						? 'animate-shake text-red-500'
+						: 'text-accent'
+				} ${response === RESPONSE_STATE.RIGHT && 'text-green-500'}`}
 				spinTiming={{ duration: 500, easing: 'ease-in-out' }}
 				opacityTiming={{ duration: 350, easing: 'ease-out' }}
 				plugins={[continuous]}
@@ -39,20 +42,19 @@ export default function App () {
 					handleSubmit={handleSubmit}
 					inputRef={inputRef}
 				/>
-				<div className='flex gap-2'>
+				<div className='flex items-center gap-2'>
 					<Select changeLanguage={changeLanguage} />
 					<Button
 						handleClick={playAudio}
-						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary'
+						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-2'
 					>
 						Listen
+						<Volume />
 					</Button>
 				</div>
 			</div>
 			<div className='w-full flex justify-center'>
-				<div className='w-56 flex relative'>
-					<Result response={response} />
-				</div>
+				<div className='w-56 flex relative'></div>
 			</div>
 			<Button
 				handleClick={() => {
