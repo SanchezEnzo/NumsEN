@@ -30,10 +30,12 @@ export default {
 				},
 			},
 			animation: {
-				shake: 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both',
+				shakeHorizontal:
+					'shakeHorizontal 0.82s cubic-bezier(.36,.07,.19,.97) both',
+				shakeVertical: 'shakeVertical 1.2s ease-in-out both',
 			},
 			keyframes: {
-				shake: {
+				shakeHorizontal: {
 					'10%, 90%': {
 						transform: 'translate3d(-1px, 0, 0)',
 					},
@@ -46,6 +48,14 @@ export default {
 					'40%, 60%': {
 						transform: 'translate3d(4px, 0, 0)',
 					},
+				},
+				shakeVertical: {
+					'0%': { transform: 'translateY(0)' },
+					'20%': { transform: 'translateY(-5px)' },
+					'40%': { transform: 'translateY(5px)' },
+					'60%': { transform: 'translateY(-3px)' },
+					'80%': { transform: 'translateY(3px)' },
+					'100%': { transform: 'translateY(0)' },
 				},
 			},
 		},

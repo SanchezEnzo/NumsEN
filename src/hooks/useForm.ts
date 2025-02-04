@@ -43,8 +43,8 @@ export function useForm({
 	}
 	useEffect(() => {
 		if (response === RESPONSE_STATE.INIT) return
-		if (response === RESPONSE_STATE.RIGHT) setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 1200)
-		setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 1200)
+		if (response === RESPONSE_STATE.RIGHT) setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 2500)
+		setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 1800)
 	}, [response, updateResponse])
 
 	return {

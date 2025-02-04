@@ -22,20 +22,22 @@ export default function App () {
 
 	return (
 		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background text-foreground'>
-			<NumberFlow
-				value={number}
-				locales='ar-OM-u-nu-latn'
-				className={`text-[10rem] transition-colors duration-700  ${
-					response === RESPONSE_STATE.WRONG ||
-					response === RESPONSE_STATE.INVALID
-						? 'animate-shake text-red-500'
-						: 'text-accent'
-				} ${response === RESPONSE_STATE.RIGHT && 'text-green-500 '}`}
-				spinTiming={{ duration: 500, easing: 'ease-in-out' }}
-				opacityTiming={{ duration: 350, easing: 'ease-out' }}
-				plugins={[continuous]}
-				willChange
-			></NumberFlow>
+			<div className=' max-h-56 relative inline-block'>
+				<NumberFlow
+					value={number}
+					locales='ar-OM-u-nu-latn'
+					className={`text-[10rem] transition-colors duration-700  ${
+						response === RESPONSE_STATE.WRONG ||
+						response === RESPONSE_STATE.INVALID
+							? 'animate-shakeHorizontal text-red-500'
+							: 'text-accent'
+					} ${response === RESPONSE_STATE.RIGHT && 'animate-shakeVertical text-green-500 '}`}
+					spinTiming={{ duration: 500, easing: 'ease-in-out' }}
+					opacityTiming={{ duration: 350, easing: 'ease-out' }}
+					plugins={[continuous]}
+					willChange
+				></NumberFlow>
+			</div>
 			<div className='flex gap-6'>
 				<Form
 					response={response}
