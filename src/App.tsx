@@ -73,3 +73,4 @@ export default function App () {
 //Todo: Agregar Lista de lenuajes
 //Todo: Botton sacar animaciones
 //Todo: Elegir formato de número
+//Todo: Add placeholder

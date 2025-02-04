@@ -13,7 +13,6 @@ export function useForm({
 }) {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
-	const [showAnimation, setShowAnimation] = useState(false)
 	const [ response, updateResponse ] = useState(RESPONSE_STATE.INIT)
 
 	function reseatToInitialValues() {
@@ -38,7 +37,6 @@ export function useForm({
 		if (isCorrect) {
 			setTimeout(() => {
 				changeNumber(getNewRandomNumber())
-				setShowAnimation(false)
 				reseatToInitialValues()
 			}, 2500)
 		}
@@ -46,13 +44,13 @@ export function useForm({
 	useEffect(() => {
 		if (response === RESPONSE_STATE.RIGHT || response === RESPONSE_STATE.INIT) return
 		setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 1200)
-	}, [showAnimation, response, updateResponse])
+	}, [response, updateResponse])
 
 	return {
 		response,
 		handleSubmit,
 		inputRef,
-		showAnimation,
+		
 		reseatToInitialValues,
 	}
 }
