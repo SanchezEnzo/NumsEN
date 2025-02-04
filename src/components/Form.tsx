@@ -22,13 +22,16 @@ export default function Form({
 			<input
 				id='response'
 				type='text'
-				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-9 w-72 text-lg'
+				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-9 w-72 text-lg placeholder-gray-400'
 				name='response'
 				autoComplete='off'
 				aria-invalid={response === RESPONSE_STATE.RIGHT}
 				ref={inputRef}
+				placeholder='Write the number in text'
 			/>
-			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>Check</Button>
+			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>
+				Check
+			</Button>
 		</form>
 	)
 }

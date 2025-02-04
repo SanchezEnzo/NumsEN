@@ -30,7 +30,7 @@ export default function App () {
 					response === RESPONSE_STATE.INVALID
 						? 'animate-shake text-red-500'
 						: 'text-accent'
-				} ${response === RESPONSE_STATE.RIGHT && 'text-green-500'}`}
+				} ${response === RESPONSE_STATE.RIGHT && 'text-green-500 '}`}
 				spinTiming={{ duration: 500, easing: 'ease-in-out' }}
 				opacityTiming={{ duration: 350, easing: 'ease-out' }}
 				plugins={[continuous]}

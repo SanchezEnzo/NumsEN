@@ -7,7 +7,7 @@ export function Select({
 }) {
 	return (
 		<select
-			className='outline outline-[0.1px] outline-secondary bg-accent rounded-t-md text-text text-card-foreground focus:outline focus:outline-secondary'
+			className='outline outline-[0.1px] px-2 outline-secondary bg-accent rounded-t-md text-text text-card-foreground focus:outline focus:outline-secondary h-10'
 			onChange={e => changeLanguage(e)}
 		>
 			{LANGUAGES_TO_SHOW.map((lang, index) => (
