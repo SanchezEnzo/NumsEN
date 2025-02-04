@@ -22,56 +22,58 @@ export default function App () {
 	const { changeLanguage, playAudio } = useLanguage({ number })
 
 	return (
-		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background  before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)]'>
-			<div className=' max-h-56 relative inline-block'>
-				<NumberFlow
-					value={number}
-					locales='ar-OM-u-nu-latn'
-					className={`text-[10rem] transition-colors duration-700  ${
-						response === RESPONSE_STATE.WRONG ||
-						response === RESPONSE_STATE.INVALID
-							? 'animate-shakeHorizontal text-red-500'
-							: 'text-accent'
-					} ${
-						response === RESPONSE_STATE.RIGHT &&
-						'animate-shakeVertical text-green-500 '
-					}`}
-					spinTiming={{ duration: 500, easing: 'ease-in-out' }}
-					opacityTiming={{ duration: 350, easing: 'ease-out' }}
-					plugins={[continuous]}
-					willChange
-				></NumberFlow>
-			</div>
-			<div className='flex gap-6'>
-				<Form
-					response={response}
-					handleSubmit={handleSubmit}
-					inputRef={inputRef}
-				/>
-				<div className='flex items-center gap-2'>
-					<Select changeLanguage={changeLanguage} />
-					<Button
-						handleClick={playAudio}
-						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
-					>
-						Listen
-						<VolumeIcon />
-					</Button>
+		<div className='h-screen w-full  bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative'>
+			<div className='relative h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
+				<div className=' max-h-56 relative inline-block'>
+					<NumberFlow
+						value={number}
+						locales='ar-OM-u-nu-latn'
+						className={`text-[10rem] transition-colors duration-700  ${
+							response === RESPONSE_STATE.WRONG ||
+							response === RESPONSE_STATE.INVALID
+								? 'animate-shakeHorizontal text-red-500'
+								: 'text-accent'
+						} ${
+							response === RESPONSE_STATE.RIGHT &&
+							'animate-shakeVertical text-green-500 '
+						}`}
+						spinTiming={{ duration: 500, easing: 'ease-in-out' }}
+						opacityTiming={{ duration: 350, easing: 'ease-out' }}
+						plugins={[continuous]}
+						willChange
+					></NumberFlow>
 				</div>
+				<div className='flex gap-6'>
+					<Form
+						response={response}
+						handleSubmit={handleSubmit}
+						inputRef={inputRef}
+					/>
+					<div className='flex items-center gap-2'>
+						<Select changeLanguage={changeLanguage} />
+						<Button
+							handleClick={playAudio}
+							classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
+						>
+							Listen
+							<VolumeIcon />
+						</Button>
+					</div>
+				</div>
+				<div className='w-full flex justify-center'>
+					<div className='w-56 flex relative'></div>
+				</div>
+				<Button
+					handleClick={() => {
+						changeNumber(getNewRandomNumber())
+						reseatToInitialValues()
+					}}
+					classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
+				>
+					Change Number
+					<RefreshIcon />
+				</Button>
 			</div>
-			<div className='w-full flex justify-center'>
-				<div className='w-56 flex relative'></div>
-			</div>
-			<Button
-				handleClick={() => {
-					changeNumber(getNewRandomNumber())
-					reseatToInitialValues()
-				}}
-				classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
-			>
-				Change Number
-				<RefreshIcon />
-			</Button>
 		</div>
 	)
 }
