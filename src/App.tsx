@@ -8,7 +8,8 @@ import Form from './components/Form'
 import { useNumber } from './hooks/useNumber'
 import { Select } from './components/Select'
 import { RESPONSE_STATE } from './constants/responseState'
-import { Volume } from './components/icons/Volumen'
+import { VolumeIcon } from './components/icons/VolumenIcon'
+import { RefreshIcon } from './components/icons/RefreshIcon'
 
 export default function App () {
 	const { number, changeNumber } = useNumber()
@@ -48,10 +49,10 @@ export default function App () {
 					<Select changeLanguage={changeLanguage} />
 					<Button
 						handleClick={playAudio}
-						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-2'
+						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
 					>
 						Listen
-						<Volume />
+						<VolumeIcon />
 					</Button>
 				</div>
 			</div>
@@ -63,9 +64,10 @@ export default function App () {
 					changeNumber(getNewRandomNumber())
 					reseatToInitialValues()
 				}}
-				classButton='text-buttonText-secondary bg-secondary outline-outline-secondary'
+				classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
 			>
 				Change Number
+				<RefreshIcon/>
 			</Button>
 		</div>
 	)
