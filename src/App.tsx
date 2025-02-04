@@ -22,7 +22,7 @@ export default function App () {
 	const { changeLanguage, playAudio } = useLanguage({ number })
 
 	return (
-		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background text-foreground'>
+		<div className='h-screen w-full flex justify-center items-center flex-col gap-[10dvh] bg-background  before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)]'>
 			<div className=' max-h-56 relative inline-block'>
 				<NumberFlow
 					value={number}
@@ -32,7 +32,10 @@ export default function App () {
 						response === RESPONSE_STATE.INVALID
 							? 'animate-shakeHorizontal text-red-500'
 							: 'text-accent'
-					} ${response === RESPONSE_STATE.RIGHT && 'animate-shakeVertical text-green-500 '}`}
+					} ${
+						response === RESPONSE_STATE.RIGHT &&
+						'animate-shakeVertical text-green-500 '
+					}`}
 					spinTiming={{ duration: 500, easing: 'ease-in-out' }}
 					opacityTiming={{ duration: 350, easing: 'ease-out' }}
 					plugins={[continuous]}
@@ -67,7 +70,7 @@ export default function App () {
 				classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
 			>
 				Change Number
-				<RefreshIcon/>
+				<RefreshIcon />
 			</Button>
 		</div>
 	)
@@ -80,3 +83,4 @@ export default function App () {
 //Todo: Botton sacar animaciones
 //Todo: Elegir formato de número
 //Todo: Add placeholder
+//Todo: Hover en los botenes y cursor pointer en el select
