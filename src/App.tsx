@@ -10,7 +10,10 @@ import { Select } from './components/Select'
 import { RESPONSE_STATE } from './constants/responseState'
 import { VolumeIcon } from './components/icons/VolumenIcon'
 import { RefreshIcon } from './components/icons/RefreshIcon'
-import { ChangeEvent, FormEvent } from 'react'
+import Range from './components/Range'
+import { useState } from 'react'
+import SettingsIcon from './components/icons/SettingsIcon'
+import Modal from './components/Modal'
 
 export default function App() {
 	const { number, range, changeNumber, setRange } = useNumber()
@@ -19,24 +22,10 @@ export default function App() {
 		changeNumber,
 	})
 	const { changeLanguage, playAudio } = useLanguage({ number })
-
-	const handleRangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-		const newValue = e.target.value
-		if (e.target.name === 'min') {
-			setRange(prevRange => ({ ...prevRange, min: Number(newValue) }))
-			return
-		}
-		setRange(prevRange => ({ ...prevRange, max: Number(newValue) }))
-	}
-
-	const handleRangeForm = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-				changeNumber(getNewRandomNumber({ range }))
-				reseatToInitialValues()
-	}
+	const [showSettings, setShowSettings] = useState(false)
 
 	return (
-		<div className='h-screen w-full  bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative'>
+		<div className='h-screen w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative'>
 			<div className='relative h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
 				<div className=' max-h-56 relative inline-block'>
 					<NumberFlow
@@ -87,33 +76,18 @@ export default function App() {
 					Change Number
 					<RefreshIcon />
 				</Button>
+				<button onClick={() => setShowSettings(!showSettings)}>
+					<SettingsIcon />
+				</button>
 			</div>
-			<div className='absolute left-5 top-5 w-52 h-52 bg-red-300'>
-				<form onSubmit={handleRangeForm}>
-					<label className='flex'>
-						Min:
-						<input
-							type='number'
-							className='w-24'
-							name='min'
-							onChange={handleRangeInput}
-							value={range.min}
-						/>
-					</label>
-
-					<label className='flex'>
-						Max:
-						<input
-							type='number'
-							className='w-24'
-							name='max'
-							onChange={handleRangeInput}
-							value={range.max}
-						/>
-					</label>
-					<button>Save</button>
-				</form>
-			</div>
+			{showSettings && <Modal closeModal={() => setShowSettings(!showSettings)}>
+				<Range
+					range={range}
+					setRange={setRange}
+					changeNumber={changeNumber}
+					reseatToInitialValues={reseatToInitialValues}
+				/>
+			</Modal>}
 		</div>
 	)
 }
