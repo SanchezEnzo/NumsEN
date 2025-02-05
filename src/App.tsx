@@ -80,14 +80,14 @@ export default function App() {
 					<SettingsIcon />
 				</button>
 			</div>
-			{showSettings && <Modal closeModal={() => setShowSettings(!showSettings)}>
+			<Modal isOpenModal={showSettings} closeModal={() => setShowSettings(!showSettings)}>
 				<Range
 					range={range}
 					setRange={setRange}
 					changeNumber={changeNumber}
 					reseatToInitialValues={reseatToInitialValues}
 				/>
-			</Modal>}
+			</Modal>
 		</div>
 	)
 }
