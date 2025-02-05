@@ -23,6 +23,7 @@ export default {
 					primary: 'var(--outline-primary)',
 					secondary: 'var(--outline-secondary)',
 				},
+				modalBg: 'var(--modal-background)',
 			},
 			animation: {
 				shakeHorizontal:

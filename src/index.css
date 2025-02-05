@@ -19,5 +19,6 @@
 --correct: green;
 --correct: #0fcd0f;
 --placeholder: #0a0b1488;
+--modal-background: oklch(.27 .013 285.805);
 	}
 }
