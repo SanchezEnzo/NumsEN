@@ -22,12 +22,12 @@ export default function Form({
 			<input
 				id='response'
 				type='text'
-				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-9 w-72 text-lg placeholder-gray-400'
+				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-10 w-80 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm'
 				name='response'
 				autoComplete='off'
 				aria-invalid={response === RESPONSE_STATE.RIGHT}
 				ref={inputRef}
-				placeholder='Write the number in text'
+				placeholder='Can you write this number in words?'
 			/>
 			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>
 				Check

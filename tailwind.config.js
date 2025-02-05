@@ -4,18 +4,13 @@ export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
-			// borderRadius: {
-			// 	lg: 'var(--radius)',
-			// 	md: 'calc(var(--radius) - 2px)',
-			// 	sm: 'calc(var(--radius) - 4px)'
-			// },
 			colors: {
 				background: 'var(--background)',
 				primary: 'var(--primary)',
 				secondary: 'var(--secondary)',
 				accent: 'var(--accent)',
-				// input: 'var(--input)',
 				text: 'var(--text)',
+				placeholder: 'var(--placeholder)',
 				button: {
 					primary: 'var(--button-primary)',
 					secondary: 'var(--button-secondary)',
