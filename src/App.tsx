@@ -10,16 +10,30 @@ import { Select } from './components/Select'
 import { RESPONSE_STATE } from './constants/responseState'
 import { VolumeIcon } from './components/icons/VolumenIcon'
 import { RefreshIcon } from './components/icons/RefreshIcon'
+import { ChangeEvent, FormEvent } from 'react'
 
-export default function App () {
-	const { number, changeNumber } = useNumber()
-	const {
-		response,
-		inputRef,
-		handleSubmit,
-		reseatToInitialValues,
-	} = useForm({ number, changeNumber })
+export default function App() {
+	const { number, range, changeNumber, setRange } = useNumber()
+	const { response, inputRef, handleSubmit, reseatToInitialValues } = useForm({
+		number,
+		changeNumber,
+	})
 	const { changeLanguage, playAudio } = useLanguage({ number })
+
+	const handleRangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+		const newValue = e.target.value
+		if (e.target.name === 'min') {
+			setRange(prevRange => ({ ...prevRange, min: Number(newValue) }))
+			return
+		}
+		setRange(prevRange => ({ ...prevRange, max: Number(newValue) }))
+	}
+
+	const handleRangeForm = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+				changeNumber(getNewRandomNumber({ range }))
+				reseatToInitialValues()
+	}
 
 	return (
 		<div className='h-screen w-full  bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative'>
@@ -65,7 +79,7 @@ export default function App () {
 				</div>
 				<Button
 					handleClick={() => {
-						changeNumber(getNewRandomNumber())
+						changeNumber(getNewRandomNumber({ range }))
 						reseatToInitialValues()
 					}}
 					classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
@@ -74,15 +88,41 @@ export default function App () {
 					<RefreshIcon />
 				</Button>
 			</div>
+			<div className='absolute left-5 top-5 w-52 h-52 bg-red-300'>
+				<form onSubmit={handleRangeForm}>
+					<label className='flex'>
+						Min:
+						<input
+							type='number'
+							className='w-24'
+							name='min'
+							onChange={handleRangeInput}
+							value={range.min}
+						/>
+					</label>
+
+					<label className='flex'>
+						Max:
+						<input
+							type='number'
+							className='w-24'
+							name='max'
+							onChange={handleRangeInput}
+							value={range.max}
+						/>
+					</label>
+					<button>Save</button>
+				</form>
+			</div>
 		</div>
 	)
 }
 
 //Todo: Agregar rango de numeros a elegir
 //Todo: Assistant
-//Todo: Cambiar de numero en respuesta correcta
-//Todo: Agregar Lista de lenuajes
 //Todo: Botton sacar animaciones
+
+//Todo: Boton mostrar el resultado correcto (capaz)
+//Todo: Agregar Lista de lenuajes
 //Todo: Elegir formato de número
-//Todo: Add placeholder
 //Todo: Hover en los botenes y cursor pointer en el select
