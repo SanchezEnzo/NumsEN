@@ -27,7 +27,7 @@ export default function Form({
 				autoComplete='off'
 				aria-invalid={response === RESPONSE_STATE.RIGHT}
 				ref={inputRef}
-				placeholder='Can you write this number in words?'
+				placeholder='Type the number in words.'
 			/>
 			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>
 				Check
