@@ -14,9 +14,11 @@ import Range from './components/Range'
 import { useState } from 'react'
 import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
+import { useRange } from './hooks/useRange'
 
-export default function App() {
-	const { number, range, changeNumber, setRange } = useNumber()
+export default function App () {
+	const {range} = useRange()
+	const { number, changeNumber } = useNumber()
 	const { response, inputRef, handleSubmit, reseatToInitialValues } = useForm({
 		number,
 		changeNumber,
@@ -85,8 +87,6 @@ export default function App() {
 				closeModal={() => setShowSettings(!showSettings)}
 			>
 				<Range
-					range={range}
-					setRange={setRange}
 					changeNumber={changeNumber}
 					reseatToInitialValues={reseatToInitialValues}
 				/>

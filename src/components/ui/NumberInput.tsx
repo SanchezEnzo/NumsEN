@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import { ChevronUp, ChevronDown } from 'lucide-react'
 
 interface NumberInputProps {
 	label?: string
+	onChange: (value: number) => void
 	value: number
 	min?: number
 	max?: number
@@ -11,24 +11,19 @@ interface NumberInputProps {
 
 export default function NumberInput({
 	label = 'Cookies',
+	onChange,
 	value,
 	min = 0,
 	max = 10000000,
 	step = 1,
 }: NumberInputProps) {
-	// Estado local dentro del input
-	const [internalValue, setInternalValue] = useState(value)
 
 	const increment = () => {
-		setInternalValue(prev =>
-			max === undefined || prev < max ? prev + step : prev
-		)
+		onChange(value < max ? value + step : value)
 	}
 
 	const decrement = () => {
-		setInternalValue(prev =>
-			min === undefined || prev > min ? prev - step : prev
-		)
+		onChange(value > min ? value - step : value)
 	}
 
 	return (
@@ -37,11 +32,11 @@ export default function NumberInput({
 			<div className='relative'>
 				<input
 					type='number'
-					value={internalValue}
+					value={value}
 					onChange={e => {
 						const newValue = Number.parseFloat(e.target.value)
 						if (!isNaN(newValue)) {
-							setInternalValue(newValue)
+							onChange(newValue)
 						}
 					}}
 					min={min}
