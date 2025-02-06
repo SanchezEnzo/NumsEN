@@ -16,8 +16,8 @@ import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
 
-export default function App () {
-	const {range} = useRange()
+export default function App() {
+	const { range } = useRange()
 	const { number, changeNumber } = useNumber()
 	const { response, inputRef, handleSubmit, reseatToInitialValues } = useForm({
 		number,
@@ -86,10 +86,12 @@ export default function App () {
 				isOpenModal={showSettings}
 				closeModal={() => setShowSettings(!showSettings)}
 			>
-				<Range
-					changeNumber={changeNumber}
-					reseatToInitialValues={reseatToInitialValues}
-				/>
+				<div className='p-10'>
+					<Range
+						changeNumber={changeNumber}
+						reseatToInitialValues={reseatToInitialValues}
+					/>
+				</div>
 			</Modal>
 		</div>
 	)

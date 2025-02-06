@@ -17,7 +17,6 @@ export default function NumberInput({
 	max = 10000000,
 	step = 1,
 }: NumberInputProps) {
-
 	const increment = () => {
 		onChange(value < max ? value + step : value)
 	}
@@ -27,7 +26,7 @@ export default function NumberInput({
 	}
 
 	return (
-		<div className='w-full max-w-[300px]'>
+		<div className='w-[300px]'>
 			<label className='block text-base mb-2 text-white'>{label}</label>
 			<div className='relative'>
 				<input
@@ -42,22 +41,23 @@ export default function NumberInput({
 					min={min}
 					max={max}
 					step={step}
-					className='w-full bg-[#141414] text-white rounded-md border border-gray-800 py-2 px-3 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+					className='w-full bg-zinc-900 border border-zinc-700 text-white text-lg rounded-lg px-3 py-2 
+              outline-none  appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
 				/>
-				<div className='absolute right-0 top-0 h-full flex flex-col border-l border-gray-800'>
+				<div className='absolute right-0 top-0 h-full flex flex-col border-l border-gray-700'>
 					<button
 						type='button'
-						className='h-1/2 px-2 rounded-none rounded-tr-md hover:bg-gray-800'
+						className='h-1/2 px-2 rounded-none rounded-tr-md border-gray-800 '
 						onClick={increment}
 					>
-						<ChevronUp className='h-4 w-4' />
+						<ChevronUp className='h-4 w-4 text-text opacity-40' />
 					</button>
 					<button
 						type='button'
-						className='h-1/2 px-2 rounded-none rounded-br-md hover:bg-gray-800 border-t border-gray-800'
+						className='h-1/2 px-2 rounded-none rounded-br-md border-t border-gray-800 border opacity-40 '
 						onClick={decrement}
 					>
-						<ChevronDown className='h-4 w-4' />
+						<ChevronDown className='h-4 w-4 text-text' />
 					</button>
 				</div>
 			</div>

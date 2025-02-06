@@ -19,12 +19,11 @@ export default function Modal({
 
 	useEffect(() => {
 		if (isOpenModal) {
-			setIsVisible(true) 
+			setIsVisible(true)
 		} else {
-			setTimeout(() => setIsVisible(false), 100) 
+			setTimeout(() => setIsVisible(false), 100)
 		}
 	}, [isOpenModal])
-
 
 	return (
 		<AnimatePresence>
@@ -49,7 +48,9 @@ export default function Modal({
 								}}
 								onClick={e => e.stopPropagation()}
 							>
-								<div className='w-52 h-52 bg-modalBg'>{children}</div>
+								<div className='min-w-52 min-h-52 bg-modalBg rounded-2xl'>
+									{children}
+								</div>
 							</motion.div>
 						)}
 					</AnimatePresence>
