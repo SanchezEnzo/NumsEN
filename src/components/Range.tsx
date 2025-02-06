@@ -57,7 +57,7 @@ export default function Range({
 						setLocalRange(prev => ({ ...prev, max: value }))
 					}
 				/>
-				<Button classButton='max-w-[80px] text-text outline-gray-800 bg-[#141414] hover:bg-[#14141499] transition-colors duration-300'>
+				<Button classButton='max-w-[80px] text-text outline-gray-800 bg-zinc-900 hover:bg-[#14141477] transition-colors duration-300'>
 					Save
 				</Button>
 			</form>

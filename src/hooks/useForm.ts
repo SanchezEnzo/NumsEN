@@ -3,6 +3,7 @@ import getNewRandomNumber from '@/service/getRandomNumber'
 import { isInputValid } from '@/service/isInputInvalid'
 import { numberToText } from '@/service/numberToString'
 import { FormEvent, useEffect, useRef, useState } from 'react'
+import { useRange } from './useRange'
 
 export function useForm({
 	number,
@@ -13,7 +14,8 @@ export function useForm({
 }) {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const isResponseChange = useRef(inputRef.current?.value)
-	const [ response, updateResponse ] = useState(RESPONSE_STATE.INIT)
+	const [response, updateResponse] = useState(RESPONSE_STATE.INIT)
+	const { range } = useRange()
 
 	function reseatToInitialValues() {
 		updateResponse(RESPONSE_STATE.INIT)
@@ -36,7 +38,7 @@ export function useForm({
 
 		if (isCorrect) {
 			setTimeout(() => {
-				changeNumber(getNewRandomNumber())
+				changeNumber(getNewRandomNumber({range}))
 				reseatToInitialValues()
 			}, 2500)
 		}
