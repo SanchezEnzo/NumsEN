@@ -1,6 +1,6 @@
-import { FormEventHandler } from "react"
-import { Button } from "./Button"
-import { RESPONSE_STATE } from "@/constants/responseState"
+import { FormEventHandler } from 'react'
+import { Button } from './Button'
+import { RESPONSE_STATE } from '@/constants/responseState'
 
 export default function Form({
 	response,

@@ -80,7 +80,10 @@ export default function App() {
 					<SettingsIcon />
 				</button>
 			</div>
-			<Modal isOpenModal={showSettings} closeModal={() => setShowSettings(!showSettings)}>
+			<Modal
+				isOpenModal={showSettings}
+				closeModal={() => setShowSettings(!showSettings)}
+			>
 				<Range
 					range={range}
 					setRange={setRange}

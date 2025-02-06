@@ -1,9 +1,10 @@
-import getNewRandomNumber from "@/service/getRandomNumber"
-import { ChangeEvent, FormEvent } from "react"
+import { useState, FormEvent, useRef } from 'react'
+import getNewRandomNumber from '@/service/getRandomNumber'
+import NumberInput from './ui/numberInput'
 
 interface RangeProps {
-	range: { min: number, max: number }
-	setRange: (range: { min: number, max: number }) => void
+	range: { min: number; max: number }
+	setRange: (range: { min: number; max: number }) => void
 	changeNumber: (number: number) => void
 	reseatToInitialValues: () => void
 }
@@ -14,45 +15,33 @@ export default function Range({
 	changeNumber,
 	reseatToInitialValues,
 }: RangeProps) {
-	const handleRangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-		const newValue = e.target.value
-		if (e.target.name === 'min') {
-			setRange({ ...range, min: Number(newValue) })
-			return
-		}
-		setRange({ ...range, max: Number(newValue) })
-	}
+	const [localRange, setLocalRange] = useState(range)
+	const isRangeChanged = useRef({ min: range.min, max: range.max })
 
 	const handleRangeForm = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		changeNumber(getNewRandomNumber({ range }))
+		console.log("isRangeChanged: ", isRangeChanged.current.min, isRangeChanged.current.max)
+		console.log("localRange: ", localRange.min, localRange.max)
+
+		setRange({ min: localRange.min, max: localRange.max }) 
+		// if (isRangeChanged.current.min === range.min && isRangeChanged.current.max === range.max) return
+		changeNumber(
+			getNewRandomNumber({ range: { min: localRange.min, max: localRange.max } })
+		)
+		setLocalRange({min: range.min, max:range.max})
 		reseatToInitialValues()
+		// isRangeChanged.current = range
 	}
 
 	return (
-		<div className=''>
+		<div>
 			<form onSubmit={handleRangeForm}>
-				<label className='flex'>
-					Min:
-					<input
-						type='number'
-						className='w-24'
-						name='min'
-						onChange={handleRangeInput}
-						value={range.min}
-					/>
-				</label>
-
-				<label className='flex'>
-					Max:
-					<input
-						type='number'
-						className='w-24'
-						name='max'
-						onChange={handleRangeInput}
-						value={range.max}
-					/>
-				</label>
+				<NumberInput
+					value={localRange.min}
+				/>
+				<NumberInput
+					value={localRange.max}
+				/>
 				<button>Save</button>
 			</form>
 		</div>
