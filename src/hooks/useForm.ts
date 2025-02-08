@@ -24,18 +24,15 @@ export function useForm({
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
-		console.log(isResponseChange.current, inputRef.current?.value)
 		if (isResponseChange.current === inputRef.current?.value) return
-		const response = inputRef.current?.value || ''
-
-		if (!isInputValid(response)) return updateResponse(RESPONSE_STATE.INVALID)
-		const isCorrect = numberToText(number) === response.trim().toLowerCase()
-		
-
-		console.log('llega aca?', isCorrect)
-		updateResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
 		isResponseChange.current = inputRef.current?.value
 
+		const response = inputRef.current?.value || ''
+		if (!isInputValid(response)) return updateResponse(RESPONSE_STATE.INVALID)
+		const isCorrect = numberToText(number) === response.trim().toLowerCase()
+
+		updateResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
+		
 		if (isCorrect) {
 			setTimeout(() => {
 				changeNumber(getNewRandomNumber({range}))
