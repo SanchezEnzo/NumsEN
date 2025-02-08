@@ -20,6 +20,7 @@ export function useForm({
 	function reseatToInitialValues() {
 		updateResponse(RESPONSE_STATE.INIT)
 		if (inputRef.current) inputRef.current.value = ''
+		isResponseChange.current = ' '
 	}
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
