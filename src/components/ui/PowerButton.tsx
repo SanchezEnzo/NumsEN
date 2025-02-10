@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Power } from 'lucide-react'
 import { motion, useAnimation, useMotionValue } from 'motion/react'
 
-enum POWER_STATES {
+export enum POWER_STATES {
 	ON,
 	OFF,
 	CHANGING,
