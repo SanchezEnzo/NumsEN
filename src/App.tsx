@@ -15,6 +15,7 @@ import { useState } from 'react'
 import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
+import PowerButton from './components/ui/PowerButton'
 
 export default function App() {
 	const { range } = useRange()
@@ -86,11 +87,12 @@ export default function App() {
 				isOpenModal={showSettings}
 				closeModal={() => setShowSettings(!showSettings)}
 			>
-				<div className='p-10'>
+				<div className='p-10 gap-5 flex flex-col'>
 					<Range
 						changeNumber={changeNumber}
 						reseatToInitialValues={reseatToInitialValues}
 					/>
+					<PowerButton text='Assistant' />
 				</div>
 			</Modal>
 		</div>
