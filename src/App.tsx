@@ -15,8 +15,9 @@ import { useState } from 'react'
 import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
-import PowerButton from './components/ui/PowerButton'
+import PowerButton, { POWER_STATES } from './components/ui/PowerButton'
 import { useAssistant } from './hooks/useAssistant'
+import FormAssistant from './components/AssistantForm'
 
 export default function App() {
 	const { range } = useRange()
@@ -52,11 +53,19 @@ export default function App() {
 					></NumberFlow>
 				</div>
 				<div className='flex gap-6'>
-					<Form
-						response={response}
-						handleSubmit={handleSubmit}
-						inputRef={inputRef}
-					/>
+					{assistant === POWER_STATES.OFF ? (
+						<Form
+							response={response}
+							handleSubmit={handleSubmit}
+							inputRef={inputRef}
+						/>
+					) : (
+						<FormAssistant
+							response={response}
+							handleSubmit={handleSubmit}
+							inputRef={inputRef}
+						/>
+					)}
 					<div className='flex items-center gap-2'>
 						<Select changeLanguage={changeLanguage} />
 						<Button
@@ -105,11 +114,10 @@ export default function App() {
 	)
 }
 
-//Todo: Agregar rango de numeros a elegir
+//Todo: Mejorar UI de rango
 //Todo: Assistant
 //Todo: Botton sacar animaciones
 
 //Todo: Boton mostrar el resultado correcto (capaz)
-//Todo: Agregar Lista de lenuajes
+//Todo: Agregar Lista de lenguajes
 //Todo: Elegir formato de número
-//Todo: Hover en los botenes y cursor pointer en el select

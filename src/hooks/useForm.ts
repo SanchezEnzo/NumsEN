@@ -18,7 +18,7 @@ export function useForm({
 	const isResponseChange = useRef(inputRef.current?.value)
 	const [response, updateResponse] = useState(RESPONSE_STATE.INIT)
 	const { range } = useRange()
-	const {assistant, updateSplitResponse,} = useAssistant()
+	const { assistant, updateSplitResponse } = useAssistant()
 
 	function reseatToInitialValues() {
 		updateResponse(RESPONSE_STATE.INIT)
@@ -26,11 +26,22 @@ export function useForm({
 		isResponseChange.current = ' '
 	}
 
-	function getSplitResponse({response, number}: {response: string, number: string}) {
+	function getSplitResponse({
+		response,
+		number,
+	}: {
+		response: string
+		number: string
+	}) {
 		const responseArray = response.split('')
 		const numberArray = number.split('')
-		const correctChars = responseArray.filter((char, index) => char === numberArray[index])
-		return [correctChars.join(''), responseArray.slice(correctChars.length).join('')]
+		const correctChars = responseArray.filter(
+			(char, index) => char === numberArray[index]
+		)
+		return [
+			correctChars.join(''),
+			responseArray.slice(correctChars.length).join(''),
+		]
 	}
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -43,33 +54,37 @@ export function useForm({
 
 		// Check if response is valid
 		if (!isInputValid(response)) return updateResponse(RESPONSE_STATE.INVALID)
-		
+
 		// Check if response is correct
 		const numberInText = numberToText(number)
 		const tunedResponse = response.trim().toLowerCase()
 		const isCorrect = numberInText === tunedResponse
 		updateResponse(isCorrect ? RESPONSE_STATE.RIGHT : RESPONSE_STATE.WRONG)
-		
+
 		// Change number if response is correct
 		if (isCorrect) {
 			setTimeout(() => {
-				changeNumber(getNewRandomNumber({range}))
+				changeNumber(getNewRandomNumber({ range }))
 				reseatToInitialValues()
 			}, 2500)
-		} else {
-			if (assistant === POWER_STATES.ON) {
-				const [correctChars, wrongChars] = getSplitResponse({
-					response: tunedResponse,
-					number: numberInText,
-				})
-				updateSplitResponse([correctChars, wrongChars])
+		}
+		// Split response if assistant is on
+		if (assistant === POWER_STATES.ON) {
+			const [correctChars, wrongChars] = getSplitResponse({
+				response: tunedResponse,
+				number: numberInText,
+			})
+			if (inputRef.current) {
+				inputRef.current.placeholder = ''
 			}
+			updateSplitResponse([correctChars, wrongChars])
 		}
 	}
 
 	useEffect(() => {
 		if (response === RESPONSE_STATE.INIT) return
-		if (response === RESPONSE_STATE.RIGHT) setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 2500)
+		if (response === RESPONSE_STATE.RIGHT)
+			setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 2500)
 		setTimeout(() => updateResponse(RESPONSE_STATE.INIT), 1800)
 	}, [response, updateResponse])
 
