@@ -10,7 +10,7 @@ export enum POWER_STATES {
 	CHANGING,
 }
 
-export default function PowerButton({ text }: { text: string }) {
+export default function PowerButton({ text, isOn }: { text: string, isOn: boolean }) {
 	const [powerState, setPowerState] = useState(POWER_STATES.OFF)
 	const x = useMotionValue(0)
 	const controls = useAnimation()
@@ -51,7 +51,7 @@ export default function PowerButton({ text }: { text: string }) {
 			<div className='w-56'>
 				{powerState === POWER_STATES.CHANGING && (
 					<div className='text-light-950 dark:text-dark-950 text-center bg-zinc-900 text-text h-14 rounded-full flex items-center justify-center border border-zinc-700'>
-						<p>Shutting down...</p>
+						{isOn ? <p>Shutting down...</p> : <p>Setting up...</p>}
 					</div>
 				)}
 				{[POWER_STATES.OFF, POWER_STATES.ON].includes(powerState) && (

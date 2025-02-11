@@ -15,7 +15,8 @@ import { useState } from 'react'
 import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
-import PowerButton from './components/ui/PowerButton'
+import PowerButton, { POWER_STATES } from './components/ui/PowerButton'
+import { useAssistant } from './hooks/useAssistant'
 
 export default function App() {
 	const { range } = useRange()
@@ -26,6 +27,7 @@ export default function App() {
 	})
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [showSettings, setShowSettings] = useState(false)
+	const {isAssistantOn} = useAssistant()
 
 	return (
 		<div className='h-screen w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative'>
@@ -92,7 +94,7 @@ export default function App() {
 						changeNumber={changeNumber}
 						reseatToInitialValues={reseatToInitialValues}
 					/>
-					<PowerButton text='Assistant' />
+					<PowerButton text='Assistant' isOn={isAssistantOn === POWER_STATES.ON} />
 				</div>
 			</Modal>
 		</div>
