@@ -37,6 +37,10 @@ export default function Range({
 		reseatToInitialValues()
 	}
 
+	const isDisibledSaveRangeButton =
+		isRangeChanged.current.min === localRange.min &&
+		isRangeChanged.current.max === localRange.max
+
 	return (
 		<div>
 			<form
@@ -57,8 +61,15 @@ export default function Range({
 						setLocalRange(prev => ({ ...prev, max: value }))
 					}
 				/>
-				<Button classButton='max-w-[80px] text-text outline-gray-800 bg-zinc-900 hover:bg-[#14141477] transition-colors duration-300'>
-					Save
+				<Button
+					classButton={`max-w-[160px]  outline-gray-800 bg-zinc-900 transition-colors duration-300 ${
+						isDisibledSaveRangeButton
+							? 'text-gray-600'
+							: 'hover:bg-[#14141477] text-text'
+					}`}
+					disabled={isDisibledSaveRangeButton}
+				>
+					Save range
 				</Button>
 			</form>
 		</div>
