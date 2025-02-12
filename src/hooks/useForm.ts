@@ -35,13 +35,16 @@ export function useForm({
 	}) {
 		const responseArray = response.split('')
 		const numberArray = number.split('')
-		const correctChars = responseArray.filter(
-			(char, index) => char === numberArray[index]
+
+		// Generar el splitResponse con la comparación de caracteres
+		const splitResponse = responseArray.map((char, index) =>
+			[
+				char,
+				char === ' ' || (char !== ' ' && char === numberArray[index]), 
+			]
 		)
-		return [
-			correctChars.join(''),
-			responseArray.slice(correctChars.length).join(''),
-		]
+
+		return splitResponse
 	}
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -70,14 +73,15 @@ export function useForm({
 		}
 		// Split response if assistant is on
 		if (assistant === POWER_STATES.ON) {
-			const [correctChars, wrongChars] = getSplitResponse({
-				response: tunedResponse,
-				number: numberInText,
-			})
 			if (inputRef.current) {
 				inputRef.current.placeholder = ''
 			}
-			updateSplitResponse([correctChars, wrongChars])
+			updateSplitResponse(
+				getSplitResponse({
+					response: tunedResponse,
+					number: numberInText,
+				})
+			)
 		}
 	}
 

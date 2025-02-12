@@ -3,15 +3,15 @@ import React, { createContext, useState } from 'react'
 
 interface AssistantProps {
 	assistant: POWER_STATES
-	splitResponse: [string, string]
-	updateSplitResponse: (newResponse: [string, string]) => void
+	splitResponse: (string | boolean)[][]
+	updateSplitResponse: (newResponse: (string | boolean)[][]) => void
 	handleAssistant: (state: POWER_STATES) => void
 }
 
 const assistantInitialContext: AssistantProps = {
 	assistant: POWER_STATES.OFF,
-	splitResponse: ['', ''],
-	updateSplitResponse: (newResponse: [string, string]) => newResponse,
+	splitResponse: [],
+	updateSplitResponse: (newResponse: (string | boolean)[][]) => newResponse,
 	handleAssistant: (state: POWER_STATES) => state,
 }
 
@@ -23,11 +23,11 @@ export function AssistanteProvider({
 	children: React.ReactNode
 }) {
 	const [assistant, setAssistant] = useState(POWER_STATES.OFF)
-	const [splitResponse, setSplitResponse] = useState<[string, string]>(['', ''])
+	const [splitResponse, setSplitResponse] = useState<(string | boolean)[][]>([])
 
 	const handleAssistant = (state: POWER_STATES) => setAssistant(state)
 
-	const updateSplitResponse = (newResponse: [string, string]) =>
+	const updateSplitResponse = (newResponse: (string | boolean)[][]) =>
 		setSplitResponse(newResponse)
 
 	return (

@@ -15,47 +15,36 @@ export default function FormAssistant({
 	const { splitResponse, updateSplitResponse } = useAssistant()
 	const [isChecked, setIsChecked] = useState(false)
 
-	const getColoredText = (response: [string, string]) => {
-		return [
-			...response[0].split('').map((char, index) => {
-				return [
-					<span key={index} className='text-green-800 text-lg'>
-						{char}
-					</span>,
-				]
-			}),
-			...response[1]
-				.split('')
-				.slice(0, 1)
-				.map((char, index) => {
-					return (
-						<span key={index} className='text-red-500 text-lg'>
-							{char}
-						</span>
-					)
-				}),
-			...response[1]
-				.split('')
-				.slice(1)
-				.map((char, index) => {
-					return (
-						<span key={index} className='text-lg'>
-							{char}
-						</span>
-					)
-				}),
-		]
+	// Aseguramos que el texto de respuesta se maneje de forma precisa
+	const getColoredText = (splitResponse: (string | boolean)[][]) => {
+		return splitResponse.map(([char, isCorrect], index) => {
+			if (char === ' ') {
+				return (
+					<span key={index} className='inline-block'>
+						&nbsp; {/* Usamos un espacio no rompible */}
+					</span>
+				)
+			}
+
+			return (
+				<span
+					key={index}
+					className={isCorrect ? 'text-green-500' : 'text-red-500'}
+				>
+					{char}
+				</span>
+			)
+		})
 	}
-
-	console.log(splitResponse[0], splitResponse[1])
-	console.log(getColoredText(splitResponse))
-
+		
+	// Cuando el formulario se envía
 	const handleAssistantForm = (e: FormEvent<HTMLFormElement>) => {
 		setIsChecked(true)
-		updateSplitResponse(['', ''])
-		handleSubmit(e)
+		updateSplitResponse([]) // Limpiamos el estado de la respuesta
+		handleSubmit(e) // Ejecutamos el submit
 	}
 
+	// Al escribir, reseteamos el estado
 	const handleInput = () => {
 		if (!isChecked) return
 		setIsChecked(false)
@@ -68,24 +57,23 @@ export default function FormAssistant({
 		>
 			<div className='relative h-10 w-80'>
 				{/* Texto coloreado */}
-
 				<div
-					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10  text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm w-80 flex items-center ${
-						!isChecked && 'text-transparent'
-					} `}
+					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm w-80 flex items-center ${
+						!isChecked && 'text-transparent' // Si no está checked, el texto se vuelve transparente
+					}`}
 				>
-					{getColoredText(splitResponse)}
+					{getColoredText(splitResponse)} {/* Muestra el texto coloreado */}
 				</div>
 
 				{/* Input real */}
 				<input
 					type='text'
-					className={`absolute inset-0 border p-2 bg-primary   text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg ${
-						isChecked && 'text-transparent bg-transparent'
+					className={`absolute inset-0 border p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg ${
+						isChecked ? 'text-transparent bg-transparent': 'text-black'
 					}`}
 					ref={inputRef}
 					placeholder='Type the number in words.'
-					onChange={handleInput}
+					onChange={handleInput} // Detecta cuando el usuario escribe
 					aria-invalid={response === RESPONSE_STATE.RIGHT}
 				/>
 			</div>
