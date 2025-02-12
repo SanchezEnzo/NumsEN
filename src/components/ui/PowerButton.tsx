@@ -13,12 +13,14 @@ export enum POWER_STATES {
 export default function PowerButton({
 	text,
 	handleState,
-	state
+	state,
+	delay,
 }: {
 	text: string
 	handleState: (state: POWER_STATES) => void
 	state: POWER_STATES
-	}) {
+	delay: number
+}) {
 	const [loadingText, setLoadingText] = useState(false)
 	const x = useMotionValue(0)
 	const controls = useAnimation()
@@ -49,7 +51,7 @@ export default function PowerButton({
 				handleState(newState)
 				controls.start({ x: xStart })
 				x.set(xStart)
-			}, 2000)
+			}, delay)
 		} else {
 			controls.start({ x: xStart })
 		}

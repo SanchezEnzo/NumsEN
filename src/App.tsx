@@ -107,6 +107,7 @@ export default function App() {
 						text='Assistant'
 						handleState={handleAssistant}
 						state={assistant}
+						delay={1200}
 					/>
 				</div>
 			</Modal>
