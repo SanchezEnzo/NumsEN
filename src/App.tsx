@@ -18,6 +18,7 @@ import { useRange } from './hooks/useRange'
 import PowerButton, { POWER_STATES } from './components/ui/PowerButton'
 import { useAssistant } from './hooks/useAssistant'
 import FormAssistant from './components/AssistantForm'
+import { CloseIcon } from './components/icons/CloseIcon'
 
 export default function App() {
 	const { range } = useRange()
@@ -98,7 +99,8 @@ export default function App() {
 				isOpenModal={showSettings}
 				closeModal={() => setShowSettings(!showSettings)}
 			>
-				<div className='p-10 gap-5 flex flex-col'>
+				<div className='p-10 gap-5 flex flex-col relative'>
+					<CloseIcon className='absolute top-1 left-1' size={36} />
 					<Range
 						changeNumber={changeNumber}
 						reseatToInitialValues={reseatToInitialValues}

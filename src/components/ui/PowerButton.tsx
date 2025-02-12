@@ -1,8 +1,8 @@
 'use client'
 
-import { Power } from 'lucide-react'
 import { motion, useAnimation, useMotionValue } from 'motion/react'
 import { useState } from 'react'
+import { PowerIcon } from '../icons/PowerIcon'
 
 export enum POWER_STATES {
 	ON,
@@ -100,7 +100,7 @@ export default function PowerButton({
 									: 'right-1 bg-lime-500'
 							}`}
 						>
-							<Power
+							<PowerIcon
 								size={32}
 								className={
 									state === POWER_STATES.OFF

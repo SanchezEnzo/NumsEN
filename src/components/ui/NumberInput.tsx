@@ -1,4 +1,5 @@
-import { ChevronUp, ChevronDown } from 'lucide-react'
+import { ArrowDropDownIcon } from "../icons/ArrowDropDownIcon"
+import { ArrowDropUpIcon } from "../icons/ArrowDropUpIcon"
 
 interface NumberInputProps {
 	label?: string
@@ -50,14 +51,14 @@ export default function NumberInput({
 						className='h-1/2 px-2 rounded-none rounded-tr-md border-gray-800 '
 						onClick={increment}
 					>
-						<ChevronUp className='h-4 w-4 text-text opacity-40' />
+						<ArrowDropUpIcon className='h-4 w-4 text-text opacity-40' />
 					</button>
 					<button
 						type='button'
 						className='h-1/2 px-2 rounded-none rounded-br-md border-t border-gray-800 border opacity-40 '
 						onClick={decrement}
 					>
-						<ChevronDown className='h-4 w-4 text-text' />
+						<ArrowDropDownIcon className='h-4 w-4 text-text' />
 					</button>
 				</div>
 			</div>

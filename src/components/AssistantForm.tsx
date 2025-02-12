@@ -29,7 +29,7 @@ export default function FormAssistant({
 			return (
 				<span
 					key={index}
-					className={isCorrect ? 'text-green-500' : 'text-red-500'}
+					className={isCorrect ? 'text-green-700' : 'text-red-600'}
 				>
 					{char}
 				</span>
