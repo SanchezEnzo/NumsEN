@@ -10,7 +10,7 @@ export enum POWER_STATES {
 	LOADING,
 }
 
-export default function PowerButton({
+export default function PowerToggleButton({
 	text,
 	handleState,
 	state,
