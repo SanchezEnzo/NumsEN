@@ -15,10 +15,10 @@ import { useState } from 'react'
 import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
-import PowerButton, { POWER_STATES } from './components/ui/PowerButton'
 import { useAssistant } from './hooks/useAssistant'
 import FormAssistant from './components/AssistantForm'
 import { CloseIcon } from './components/icons/CloseIcon'
+import PowerToggleButton, { POWER_STATES } from './components/ui/PowerToggleButton'
 
 export default function App() {
 	const { range } = useRange()
@@ -100,12 +100,16 @@ export default function App() {
 				closeModal={() => setShowSettings(!showSettings)}
 			>
 				<div className='p-10 gap-5 flex flex-col relative'>
-					<CloseIcon className='absolute top-1 left-1' size={36} />
+					<CloseIcon
+						className='absolute top-1 left-1 -translate-x-2 -translate-y-2'
+						size={36}
+						onClick={() => setShowSettings(!showSettings)}
+					/>
 					<Range
 						changeNumber={changeNumber}
 						reseatToInitialValues={reseatToInitialValues}
 					/>
-					<PowerButton
+					<PowerToggleButton
 						text='Assistant'
 						handleState={handleAssistant}
 						state={assistant}
