@@ -14,7 +14,9 @@ export const RangeContext = createContext(rangeInitialValue)
 
 export function RangeProvider ({ children }: { children: React.ReactNode }) {
 	const [range, setRange] = useState(rangeInitialValue.range)
-	const updateRange = ({min, max}: {min: number, max:number}) => setRange({ min, max })
+
+	const updateRange = ({ min, max }: { min: number, max: number }) => setRange({ min, max })
+	
 	return (
 		<RangeContext.Provider value={{range, updateRange}}>
 			{children}

@@ -1,4 +1,4 @@
-import { POWER_STATES } from '@/components/ui/PowerButton'
+import { POWER_STATES } from '@/components/ui/PowerToggleButton'
 import React, { createContext, useState } from 'react'
 
 interface AssistantProps {

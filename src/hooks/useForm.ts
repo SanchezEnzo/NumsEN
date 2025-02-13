@@ -5,7 +5,7 @@ import { numberToText } from '@/service/numberToString'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import { useRange } from './useRange'
 import { useAssistant } from './useAssistant'
-import { POWER_STATES } from '@/components/ui/PowerButton'
+import { POWER_STATES } from '@/components/ui/PowerToggleButton'
 
 export function useForm({
 	number,
@@ -37,12 +37,10 @@ export function useForm({
 		const numberArray = number.split('')
 
 		// Generar el splitResponse con la comparación de caracteres
-		const splitResponse = responseArray.map((char, index) =>
-			[
-				char,
-				char === ' ' || (char !== ' ' && char === numberArray[index]), 
-			]
-		)
+		const splitResponse = responseArray.map((char, index) => [
+			char,
+			char === ' ' || (char !== ' ' && char === numberArray[index]),
+		])
 
 		return splitResponse
 	}
