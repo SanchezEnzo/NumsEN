@@ -19,7 +19,7 @@ export function CloseIcon({
 			x='0px'
 			y='0px'
 			viewBox='0 0 122.88 122.879'
-			enable-background='new 0 0 122.88 122.879'
+			enableBackground='new 0 0 122.88 122.879'
 			xmlSpace='preserve'
 			onClick={onClick}
 		>
