@@ -18,7 +18,7 @@ import { useRange } from './hooks/useRange'
 import { useAssistant } from './hooks/useAssistant'
 import FormAssistant from './components/AssistantForm'
 import { CloseIcon } from './components/icons/CloseIcon'
-import PowerToggleButton, { POWER_STATES } from './components/ui/PowerToggleButton'
+import PowerToggleButton, { POWER_BUTTON_STATES } from './components/ui/PowerToggleButton'
 
 export default function App() {
 	const { range } = useRange()
@@ -54,7 +54,7 @@ export default function App() {
 					></NumberFlow>
 				</div>
 				<div className='flex gap-6'>
-					{assistant === POWER_STATES.OFF ? (
+					{assistant === POWER_BUTTON_STATES.OFF ? (
 						<Form
 							response={response}
 							handleSubmit={handleSubmit}

@@ -5,7 +5,7 @@ import { numberToText } from '@/service/numberToString'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import { useRange } from './useRange'
 import { useAssistant } from './useAssistant'
-import { POWER_STATES } from '@/components/ui/PowerToggleButton'
+import { POWER_BUTTON_STATES } from '@/components/ui/PowerToggleButton'
 
 export function useForm({
 	number,
@@ -70,7 +70,7 @@ export function useForm({
 			}, 2500)
 		}
 		// Split response if assistant is on
-		if (assistant === POWER_STATES.ON) {
+		if (assistant === POWER_BUTTON_STATES.ON) {
 			if (inputRef.current) {
 				inputRef.current.placeholder = ''
 			}
