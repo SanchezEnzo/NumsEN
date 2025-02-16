@@ -39,6 +39,8 @@ export default function FormAssistant({
 		
 	// Cuando el formulario se envía
 	const handleAssistantForm = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		if (isChecked) return
 		setIsChecked(true)
 		updateSplitResponse([]) // Limpiamos el estado de la respuesta
 		handleSubmit(e) // Ejecutamos el submit
@@ -59,7 +61,7 @@ export default function FormAssistant({
 				{/* Texto coloreado */}
 				<div
 					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm w-80 flex items-center ${
-						!isChecked && 'text-transparent' // Si no está checked, el texto se vuelve transparente
+						isChecked ?? 'text-transparent' // Si no está checked, el texto se vuelve transparente
 					}`}
 				>
 					{getColoredText(splitResponse)} {/* Muestra el texto coloreado */}
@@ -69,10 +71,10 @@ export default function FormAssistant({
 				<input
 					type='text'
 					className={`absolute inset-0 border p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg ${
-						isChecked ? 'text-transparent bg-transparent': 'text-black'
+						isChecked ? 'text-transparent bg-transparent' : 'text-black'
 					}`}
 					ref={inputRef}
-					placeholder='Type the number in words.'
+					placeholder={!isChecked ? 'Type the number in words.' : ''}
 					onChange={handleInput} // Detecta cuando el usuario escribe
 					aria-invalid={response === RESPONSE_STATE.RIGHT}
 				/>
