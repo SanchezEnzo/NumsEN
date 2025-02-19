@@ -27,7 +27,7 @@ export default function NumberInput({
 	}
 
 	return (
-		<div className='w-[300px]'>
+		<div className='w-[300px] max-sm:w-[220px]'>
 			<label className='block text-base mb-2 text-white'>{label}</label>
 			<div className='relative'>
 				<input
