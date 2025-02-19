@@ -32,7 +32,7 @@ export default function App() {
 	const {assistant, handleAssistant} = useAssistant()
 
 	return (
-		<div className='h-[100dvh] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden max-sm:pt-[10dvh]'>
+		<div className='h-[100dvh] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden '>
 			<div className='relative h-screen w-full flex justify-center items-center flex-col gap-[5dvh]'>
 				<div className=' max-h-56 relative inline-block max-sm:mb-[5dvh]'>
 					<NumberFlow
