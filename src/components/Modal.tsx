@@ -48,7 +48,7 @@ export default function Modal({
 								}}
 								onClick={e => e.stopPropagation()}
 							>
-								<div className='min-w-52 min-h-52 bg-modalBg rounded-2xl'>
+								<div className='w-96 h-96 max-md:w-[300px] max-md:h-96 bg-modalBg rounded-2xl'>
 									{children}
 								</div>
 							</motion.div>
