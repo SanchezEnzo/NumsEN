@@ -32,13 +32,13 @@ export default function App() {
 	const {assistant, handleAssistant} = useAssistant()
 
 	return (
-		<div className='h-screen w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative'>
+		<div className='h-screen w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden max-sm:pt-[10dvh]'>
 			<div className='relative h-screen w-full flex justify-center items-center flex-col gap-[10dvh]'>
 				<div className=' max-h-56 relative inline-block'>
 					<NumberFlow
 						value={number}
 						locales='ar-OM-u-nu-latn'
-						className={`text-[10rem] transition-colors duration-700  ${
+						className={`text-[10rem] transition-colors duration-700   ${
 							response === RESPONSE_STATE.WRONG ||
 							response === RESPONSE_STATE.INVALID
 								? 'animate-shakeHorizontal text-red-500'
@@ -53,7 +53,7 @@ export default function App() {
 						willChange
 					></NumberFlow>
 				</div>
-				<div className='flex gap-6'>
+				<div className='flex gap-6 max-sm:flex-col max-sm:items-center max-sm:gap-[5dvh]'>
 					{assistant === POWER_BUTTON_STATES.OFF ? (
 						<Form
 							response={response}
