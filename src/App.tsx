@@ -17,7 +17,7 @@ import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
 import { useAssistant } from './hooks/useAssistant'
 import FormAssistant from './components/AssistantForm'
-// import { CloseIcon } from './components/icons/CloseIcon'
+import { CloseIcon } from './components/icons/CloseIcon'
 import PowerToggleButton, { POWER_BUTTON_STATES } from './components/ui/PowerToggleButton'
 
 export default function App() {
@@ -100,11 +100,11 @@ export default function App() {
 				closeModal={() => setShowSettings(!showSettings)}
 			>
 				<div className='p-10 gap-5 flex flex-col relative'>
-					{/* <CloseIcon
+					<CloseIcon
 						className='absolute top-1 left-1 -translate-x-2 -translate-y-2'
 						size={36}
 						onClick={() => setShowSettings(!showSettings)}
-					/> */}
+					/>
 					<Range
 						changeNumber={changeNumber}
 						reseatToInitialValues={reseatToInitialValues}
