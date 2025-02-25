@@ -124,7 +124,6 @@ export default function App() {
 //Todo: Mejorar UI de rango
 //Todo: Assistant
 //Todo: Botton sacar animaciones
-
 //Todo: Boton mostrar el resultado correcto (capaz)
 //Todo: Agregar Lista de lenguajes
 //Todo: Elegir formato de número
