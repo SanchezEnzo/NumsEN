@@ -22,7 +22,7 @@ export default function Form({
 			<input
 				id='response'
 				type='text'
-				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-10 w-80 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm max-sm:w-48'
+				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-10 w-80 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm max-sm:w-56'
 				name='response'
 				autoComplete='off'
 				aria-invalid={response === RESPONSE_STATE.RIGHT}
