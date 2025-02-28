@@ -1,10 +1,10 @@
-export default function SettingsIcon () {
+export default function SettingsIcon ({ className, width, height }: { className?: string, width:number, height:number }) {
 	return (
 		<svg
 			viewBox='0 0 1024 1024'
-			width='64px'
-			height='64px'
-			className='fixed top-5 left-5 opacity-90 cursor-pointer'
+			width={`${width}px`}
+			height={`${height}px`}
+			className={` opacity-90 cursor-pointer ${className}`}
 			version='1.1'
 			xmlns='http://www.w3.org/2000/svg'
 			fill='#000000'

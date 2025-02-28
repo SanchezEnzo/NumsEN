@@ -6,12 +6,12 @@ import { Button } from './Button'
 
 interface RangeProps {
 	changeNumber: (number: number) => void
-	reseatToInitialValues: () => void
+	reseatFormValues: () => void
 }
 
 export default function Range({
 	changeNumber,
-	reseatToInitialValues,
+	reseatFormValues,
 }: RangeProps) {
 	const { range, updateRange } = useRange()
 	const [localRange, setLocalRange] = useState(range)
@@ -34,7 +34,7 @@ export default function Range({
 				range: { min: localRange.min, max: localRange.max },
 			})
 		)
-		reseatToInitialValues()
+		reseatFormValues()
 	}
 
 	const isDisibledSaveRangeButton =

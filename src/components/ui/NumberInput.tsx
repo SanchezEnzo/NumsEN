@@ -15,7 +15,7 @@ export default function NumberInput({
 	onChange,
 	value,
 	min = 0,
-	max = 10000000,
+	max = 9999999,
 	step = 1,
 }: NumberInputProps) {
 	const increment = () => {
