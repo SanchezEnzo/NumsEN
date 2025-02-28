@@ -1,12 +1,12 @@
-import { ArrowDropDownIcon } from "../icons/ArrowDropDownIcon"
-import { ArrowDropUpIcon } from "../icons/ArrowDropUpIcon"
+import { ArrowDropDownIcon } from '../icons/ArrowDropDownIcon'
+import { ArrowDropUpIcon } from '../icons/ArrowDropUpIcon'
 
 interface NumberInputProps {
 	label?: string
-	onChange: (value: number) => void
-	value: number
-	min?: number
-	max?: number
+	onChange: (value: number | string) => void // Permite string vacío
+	value: number | string // Permite string vacío
+	min: number
+	max: number
 	step?: number
 }
 
@@ -14,16 +14,16 @@ export default function NumberInput({
 	label = 'Cookies',
 	onChange,
 	value,
-	min = 0,
-	max = 9999999,
+	min,
+	max,
 	step = 1,
 }: NumberInputProps) {
 	const increment = () => {
-		onChange(value < max ? value + step : value)
+		if (typeof value === 'number') return onChange(value < max ? value + step : value)
 	}
 
 	const decrement = () => {
-		onChange(value > min ? value - step : value)
+		if (typeof value === 'number') return onChange(value > min ? value - step : value)
 	}
 
 	return (
@@ -34,10 +34,8 @@ export default function NumberInput({
 					type='number'
 					value={value}
 					onChange={e => {
-						const newValue = Number.parseFloat(e.target.value)
-						if (!isNaN(newValue)) {
-							onChange(newValue)
-						}
+						const newValue = e.target.value
+						onChange(newValue === '' ? '' : Number.parseFloat(newValue))
 					}}
 					min={min}
 					max={max}

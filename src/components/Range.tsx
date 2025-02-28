@@ -39,7 +39,7 @@ export default function Range({
 
 	const isDisibledSaveRangeButton =
 		(isRangeChanged.current.min === localRange.min &&
-		isRangeChanged.current.max === localRange.max) || localRange.min > localRange.max
+		isRangeChanged.current.max === localRange.max) || localRange.min > localRange.max || typeof localRange.min !== 'number' || typeof localRange.max !== 'number'
 
 	return (
 		<div>
@@ -49,16 +49,20 @@ export default function Range({
 			>
 				<NumberInput
 					label='Min'
+					min={0}
+					max={9999999}
 					value={localRange.min}
-					onChange={(value: number) =>
-						setLocalRange(prev => ({ ...prev, min: value }))
+					onChange={(value: number | string) =>
+						 setLocalRange(prev => ({ ...prev, min: (value as number) }))
 					}
 				/>
 				<NumberInput
 					label='Max'
+					min={0}
+					max={9999999}
 					value={localRange.max}
-					onChange={(value: number) =>
-						setLocalRange(prev => ({ ...prev, max: value }))
+					onChange={(value: number | string) =>
+						 setLocalRange(prev => ({ ...prev, max: (value as number) }))
 					}
 				/>
 				<Button
