@@ -22,12 +22,3 @@
 --modal-background: oklch(.27 .013 285.805);
 	}
 }
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-	}
-  body {
-    @apply bg-background text-foreground;
-	}
-}
