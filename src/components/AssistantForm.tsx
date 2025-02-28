@@ -12,7 +12,7 @@ export default function FormAssistant({
 	handleSubmit: FormEventHandler<HTMLFormElement>
 	inputRef: React.RefObject<HTMLInputElement>
 }) {
-	const { splitResponse, updateSplitResponse } = useAssistant()
+	const { assistantResponse, updateAssistantResponse } = useAssistant()
 	const [isChecked, setIsChecked] = useState(false)
 
 	// Aseguramos que el texto de respuesta se maneje de forma precisa
@@ -42,7 +42,7 @@ export default function FormAssistant({
 		e.preventDefault()
 		if (isChecked) return
 		setIsChecked(true)
-		updateSplitResponse([]) // Limpiamos el estado de la respuesta
+		updateAssistantResponse([]) // Limpiamos el estado de la respuesta
 		handleSubmit(e) // Ejecutamos el submit
 	}
 
@@ -64,7 +64,7 @@ export default function FormAssistant({
 						isChecked ?? 'text-transparent' // Si no está checked, el texto se vuelve transparente
 					}`}
 				>
-					{getColoredText(splitResponse)} {/* Muestra el texto coloreado */}
+					{getColoredText(assistantResponse)} {/* Muestra el texto coloreado */}
 				</div>
 
 				{/* Input real */}
