@@ -50,7 +50,7 @@ export default function Range({
 				<NumberInput
 					label='Min'
 					min={0}
-					max={9999999}
+					max={10000000}
 					value={localRange.min}
 					onChange={(value: number | string) =>
 						 setLocalRange(prev => ({ ...prev, min: (value as number) }))
@@ -59,7 +59,7 @@ export default function Range({
 				<NumberInput
 					label='Max'
 					min={0}
-					max={9999999}
+					max={10000000}
 					value={localRange.max}
 					onChange={(value: number | string) =>
 						 setLocalRange(prev => ({ ...prev, max: (value as number) }))
