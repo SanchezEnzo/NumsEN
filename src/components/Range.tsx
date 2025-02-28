@@ -38,8 +38,8 @@ export default function Range({
 	}
 
 	const isDisibledSaveRangeButton =
-		isRangeChanged.current.min === localRange.min &&
-		isRangeChanged.current.max === localRange.max
+		(isRangeChanged.current.min === localRange.min &&
+		isRangeChanged.current.max === localRange.max) || localRange.min > localRange.max
 
 	return (
 		<div>
