@@ -1,7 +1,7 @@
 import { RESPONSE_STATE } from '@/constants/responseState'
 import { isInputValid } from '@/service/isInputInvalid'
 import { numberToText } from '@/service/numberToString'
-import { FormEvent, useCallback, useEffect, useRef } from 'react'
+import { FormEvent, useCallback, useEffect, useMemo, useRef } from 'react'
 import { useRange } from './useRange'
 import { useAssistant } from './useAssistant'
 import { POWER_BUTTON_STATES } from '@/components/ui/PowerToggleButton'
@@ -28,6 +28,8 @@ export function useForm({
 		isResponseChange.current = ' '
 	}, [updateResponse])
 
+	const numberInText = useMemo(() => numberToText(number), [number])
+
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		// Check if response changed
@@ -39,7 +41,6 @@ export function useForm({
 		if (!isInputValid(response)) return updateResponse(RESPONSE_STATE.INVALID)
 		
 		// Check if response is correct
-		const numberInText = numberToText(number)
 		const tunedResponse = response.trim().toLowerCase()
 		const isCorrect = numberInText === tunedResponse
 
