@@ -7,7 +7,7 @@ import { useAssistant } from './useAssistant'
 import { POWER_BUTTON_STATES } from '@/components/ui/PowerToggleButton'
 import { useResponse } from './useResponse'
 import { getAssistantResponse } from '@/service/getAssistantResponse'
-import getNewRandomNumber from '@/service/getRandomNumber'
+import getRandomNumber from '@/service/getRandomNumber'
 
 export function useForm({
 	number,
@@ -61,7 +61,7 @@ export function useForm({
 		if (response === RESPONSE_STATE.RIGHT) {
 			setTimeout(() => {
 				updateResponse(RESPONSE_STATE.INIT)
-				changeNumber(getNewRandomNumber({range}))
+				changeNumber(getRandomNumber({range}))
 				reseatFormValues()
 			}, 2500)
 		}

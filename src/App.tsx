@@ -20,7 +20,7 @@ import PowerToggleButton, {
 	POWER_BUTTON_STATES,
 } from './components/ui/PowerToggleButton'
 import { useAssistant } from './hooks/useAssistant'
-import getNewRandomNumber from './service/getRandomNumber'
+import getRandomNumber from './service/getRandomNumber'
 import useMediaQuery from './hooks/useMediaQuery'
 
 export default function App() {
@@ -94,7 +94,7 @@ export default function App() {
 					</div>
 					<Button
 						handleClick={() => {
-							changeNumber(getNewRandomNumber({ range }))
+							changeNumber(getRandomNumber({ range }))
 							reseatFormValues()
 						}}
 						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
