@@ -57,10 +57,10 @@ export default function FormAssistant({
 			className='flex gap-2 relative max-h-10 h-10 items-center'
 			onSubmit={handleAssistantForm}
 		>
-			<div className='relative h-10 w-80 max-sm:w-48'>
+			<div className='relative h-10 w-80 max-sm:w-56'>
 				{/* Texto coloreado */}
 				<div
-					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm w-80 flex items-center max-sm:w-48 ${
+					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm w-80 flex items-center max-sm:w-56 ${
 						isChecked ?? 'text-transparent' // Si no está checked, el texto se vuelve transparente
 					}`}
 				>
@@ -70,7 +70,7 @@ export default function FormAssistant({
 				{/* Input real */}
 				<input
 					type='text'
-					className={`absolute inset-0 border p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg max-sm:w-48 ${
+					className={`absolute inset-0 p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg max-sm:w-56 ${
 						isChecked ? 'text-transparent bg-transparent' : 'text-black'
 					}`}
 					ref={inputRef}
