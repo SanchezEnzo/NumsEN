@@ -22,3 +22,8 @@
 --modal-background: oklch(.27 .013 285.805);
 	}
 }
+
+html, body {
+  height: 100dvh;
+  overflow: hidden;
+}
