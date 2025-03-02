@@ -22,6 +22,7 @@ import PowerToggleButton, {
 import { useAssistant } from './hooks/useAssistant'
 import getRandomNumber from './service/getRandomNumber'
 import useMediaQuery from './hooks/useMediaQuery'
+import { setNumberFontSize } from './service/setNumberFontSize'
 
 export default function App() {
 	const { range } = useRange()
@@ -35,21 +36,7 @@ export default function App() {
 	const { assistant, handleAssistant } = useAssistant()
 
 	const isMobile = useMediaQuery('(max-width: 640px)')
-	const numberLenght = number.toString().length
-	const setNumberFontSize = (numberLenght: number) => {
-		switch (numberLenght) {
-			case 4:
-			case 5:
-				return 'max-sm:text-[7rem]'
-			case 6:
-				return 'max-sm:text-[6rem]'
-			case 7:
-			case 8:
-				return 'max-sm:text-[5rem]'
-			default:
-				return
-		}
-	}
+
 
 	return (
 		<div className='h-[100dvh] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden '>
@@ -59,7 +46,7 @@ export default function App() {
 						value={number}
 						locales='ar-OM-u-nu-latn'
 						className={`text-[10rem] ${setNumberFontSize(
-							numberLenght
+							number
 						)} transition-colors duration-700  ${
 							response === RESPONSE_STATE.WRONG ||
 							response === RESPONSE_STATE.INVALID
