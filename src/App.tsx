@@ -34,8 +34,8 @@ export default function App() {
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [showSettings, setShowSettings] = useState(false)
 	const { assistant, handleAssistant } = useAssistant()
-
-	const isMobile = useMediaQuery('(max-width: 640px)')
+	const {isMobile} = useMediaQuery()
+	
 
 
 	return (

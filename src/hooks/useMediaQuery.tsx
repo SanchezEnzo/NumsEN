@@ -1,6 +1,6 @@
 import { useRef, useSyncExternalStore } from 'react'
 
-export default function useMediaQuery(query: string) {
+function useMediaQueryInternal(query: string) {
 	const mediaQuery = useRef(window.matchMedia(query))
 
 	return useSyncExternalStore(
@@ -13,3 +13,10 @@ export default function useMediaQuery(query: string) {
 		() => mediaQuery.current.matches
 	)
 }
+
+export default function useMediaQuery () {
+	const isMobile = useMediaQueryInternal('(max-width: 640px)')
+	
+	return {isMobile}
+}
+

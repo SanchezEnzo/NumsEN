@@ -1,6 +1,7 @@
 import { FormEventHandler } from 'react'
 import { Button } from './Button'
 import { RESPONSE_STATE } from '@/constants/responseState'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 export default function Form({
 	response,
@@ -10,7 +11,8 @@ export default function Form({
 	response: RESPONSE_STATE
 	handleSubmit: FormEventHandler<HTMLFormElement>
 	inputRef: React.RefObject<HTMLInputElement>
-}) {
+	}) {
+	const {isMobile} = useMediaQuery()
 	return (
 		<form
 			className='flex gap-2 relative max-h-10 h-10 items-center'
@@ -20,6 +22,7 @@ export default function Form({
 				Write the number in text
 			</label>
 			<input
+				autoFocus={isMobile}
 				id='response'
 				type='text'
 				className='outline outline-[0.1px] pl-1 bg-primary text-background focus:outline focus:outline-background h-10 w-80 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm max-sm:w-56'
