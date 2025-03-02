@@ -41,7 +41,7 @@ export default function App() {
 	return (
 		<div className='h-[100%] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden '>
 			<div className='relative h-screen w-full flex justify-center items-center flex-col max-sm:gap-[5dvh] gap-[15dvh]'>
-				<div className=' h-56 relative max-sm:mb-[5dvh] flex items-center'>
+				<div className=' h-56 relative max-sm:mb-[2dvh] flex items-center'>
 					<NumberFlow
 						value={number}
 						locales='ar-OM-u-nu-latn'
