@@ -1,4 +1,4 @@
-import { FormEvent, FormEventHandler, useState } from 'react'
+import { FormEvent, FormEventHandler, useId, useState } from 'react'
 import { Button } from './Button'
 import { RESPONSE_STATE } from '@/constants/responseState'
 import { useAssistant } from '@/hooks/useAssistant'
@@ -14,6 +14,8 @@ export default function FormAssistant({
 }) {
 	const { assistantResponse, updateAssistantResponse } = useAssistant()
 	const [isChecked, setIsChecked] = useState(false)
+	const inputNumberId = useId()
+	
 
 	// Aseguramos que el texto de respuesta se maneje de forma precisa
 	const getColoredText = (splitResponse: (string | boolean)[][]) => {
@@ -68,7 +70,9 @@ export default function FormAssistant({
 				</div>
 
 				{/* Input real */}
+				<label htmlFor={inputNumberId}>Write number in text</label>
 				<input
+					id={inputNumberId}
 					type='text'
 					className={`absolute inset-0 p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg max-sm:w-56 ${
 						isChecked ? 'text-transparent bg-transparent' : 'text-black'
