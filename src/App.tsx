@@ -34,14 +34,12 @@ export default function App() {
 	const { changeLanguage, playAudio } = useLanguage({ number })
 	const [showSettings, setShowSettings] = useState(false)
 	const { assistant, handleAssistant } = useAssistant()
-	const {isMobile} = useMediaQuery()
-	
-
+	const { isMobile } = useMediaQuery()
 
 	return (
 		<div className='h-[100dvh] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden '>
 			<div className='relative h-screen w-full flex justify-center items-center flex-col max-sm:gap-[5dvh] gap-[15dvh]'>
-				<div className=' h-56 relative  flex items-center'>
+				<section className=' h-56 relative  flex items-center'>
 					<NumberFlow
 						value={number}
 						locales='ar-OM-u-nu-latn'
@@ -61,8 +59,8 @@ export default function App() {
 						plugins={[continuous]}
 						willChange
 					></NumberFlow>
-				</div>
-				<div className='flex flex-col items-center gap-[10dvh]'>
+				</section>
+				<section className='flex flex-col items-center gap-[10dvh]'>
 					<div className='flex gap-6 max-sm:flex-col max-sm:items-center max-sm:gap-[5dvh]'>
 						{assistant === POWER_BUTTON_STATES.OFF ? (
 							<Form
@@ -101,14 +99,16 @@ export default function App() {
 						Change Number
 						<RefreshIcon />
 					</Button>
-				</div>
-				<button onClick={() => setShowSettings(!showSettings)}>
-					<SettingsIcon
-						className='fixed top-5 right-5 max-sm:top-2 max-sm:right-2'
-						width={isMobile ? 48 : 64}
-						height={isMobile ? 48 : 64}
-					/>
-				</button>
+				</section>
+				<section>
+					<button onClick={() => setShowSettings(!showSettings)}>
+						<SettingsIcon
+							className='fixed top-5 right-5 max-sm:top-2 max-sm:right-2'
+							width={isMobile ? 48 : 64}
+							height={isMobile ? 48 : 64}
+						/>
+					</button>
+				</section>
 			</div>
 			<Modal
 				isOpenModal={showSettings}
