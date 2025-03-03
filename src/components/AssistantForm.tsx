@@ -15,7 +15,6 @@ export default function FormAssistant({
 	const { assistantResponse, updateAssistantResponse } = useAssistant()
 	const [isChecked, setIsChecked] = useState(false)
 	const inputNumberId = useId()
-	
 
 	// Aseguramos que el texto de respuesta se maneje de forma precisa
 	const getColoredText = (splitResponse: (string | boolean)[][]) => {
@@ -38,14 +37,14 @@ export default function FormAssistant({
 			)
 		})
 	}
-		
+
 	// Cuando el formulario se envía
 	const handleAssistantForm = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		if (isChecked) return
 		setIsChecked(true)
-		updateAssistantResponse([]) // Limpiamos el estado de la respuesta
-		handleSubmit(e) // Ejecutamos el submit
+		updateAssistantResponse([])
+		handleSubmit(e)
 	}
 
 	// Al escribir, reseteamos el estado
@@ -62,25 +61,32 @@ export default function FormAssistant({
 			<div className='relative h-10 w-80 max-sm:w-56'>
 				{/* Texto coloreado */}
 				<div
-					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm w-80 flex items-center max-sm:w-56 ${
+					role='input'
+					aria-label='Show number in text with errors'
+					className={`absolute outline outline-[0.1px] pl-2 top-0 left-0 bg-primary text-background focus:outline focus:outline-background h-10 text-lg placeholder-placeholder placeholder-opacity-80 rounded-sm max-w-80 w-80 flex items-center max-sm:w-56 ${
 						isChecked ?? 'text-transparent' // Si no está checked, el texto se vuelve transparente
 					}`}
 				>
-					{getColoredText(assistantResponse)} {/* Muestra el texto coloreado */}
+					<span className={`${!isChecked && 'hidden'} overflow-hidden`}>
+						{getColoredText(assistantResponse)}{' '}
+						{/* Muestra el texto coloreado */}
+					</span>
 				</div>
 
 				{/* Input real */}
 				<label htmlFor={inputNumberId}>Write number in text</label>
 				<input
 					id={inputNumberId}
+					autoComplete='off'
 					type='text'
-					className={`absolute inset-0 p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg max-sm:w-56 ${
+					className={`absolute inset-0 p-2 bg-primary text-black caret-black outline-none w-full placeholder-placeholder placeholder-opacity-80 text-lg max-sm:w-56  ${
 						isChecked ? 'text-transparent bg-transparent' : 'text-black'
 					}`}
 					ref={inputRef}
 					placeholder={!isChecked ? 'Type the number in words.' : ''}
 					onChange={handleInput} // Detecta cuando el usuario escribe
 					aria-invalid={response === RESPONSE_STATE.RIGHT}
+					autoFocus
 				/>
 			</div>
 			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>
