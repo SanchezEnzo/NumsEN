@@ -104,7 +104,7 @@ export default function App() {
 				</div>
 				<button onClick={() => setShowSettings(!showSettings)}>
 					<SettingsIcon
-						className='fixed top-5 left-5 max-sm:top-2 max-sm:left-2'
+						className='fixed top-5 right-5 max-sm:top-2 max-sm:right-2'
 						width={isMobile ? 48 : 64}
 						height={isMobile ? 48 : 64}
 					/>
