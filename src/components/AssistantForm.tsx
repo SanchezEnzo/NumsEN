@@ -2,6 +2,7 @@ import { FormEvent, FormEventHandler, useId, useState } from 'react'
 import { Button } from './Button'
 import { RESPONSE_STATE } from '@/constants/responseState'
 import { useAssistant } from '@/hooks/useAssistant'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 export default function FormAssistant({
 	response,
@@ -15,6 +16,7 @@ export default function FormAssistant({
 	const { assistantResponse, updateAssistantResponse } = useAssistant()
 	const [isChecked, setIsChecked] = useState(false)
 	const inputNumberId = useId()
+	const {isMobile} = useMediaQuery()
 
 	// Aseguramos que el texto de respuesta se maneje de forma precisa
 	const getColoredText = (splitResponse: (string | boolean)[][]) => {
@@ -89,7 +91,10 @@ export default function FormAssistant({
 					autoFocus
 				/>
 			</div>
-			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>
+			<Button
+				classButton='bg-primary text-buttonText-primary outline-outline-primary'
+				applyTransform={!isMobile}
+			>
 				Check
 			</Button>
 		</form>

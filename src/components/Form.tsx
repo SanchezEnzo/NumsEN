@@ -33,7 +33,10 @@ export default function Form({
 				ref={inputRef}
 				placeholder='Type the number in words.'
 			/>
-			<Button classButton='bg-primary text-buttonText-primary outline-outline-primary'>
+			<Button
+				classButton='bg-primary text-buttonText-primary outline-outline-primary'
+				applyTransform={!isMobile}
+			>
 				Check
 			</Button>
 		</form>

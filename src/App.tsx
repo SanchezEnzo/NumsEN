@@ -37,8 +37,8 @@ export default function App() {
 	const { isMobile } = useMediaQuery()
 
 	return (
-		<div className='h-[100dvh] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden '>
-			<div className='relative h-screen w-full flex justify-center items-center flex-col max-sm:gap-[5dvh] gap-[15dvh]'>
+		<div className='h-[100dvh] w-full bg-background before:absolute before:inset-0 before:bg-black/30 before:shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] relative overflow-x-hidden overflow-y-hidden font-mono'>
+			<main className='relative h-screen w-full flex justify-center items-center flex-col max-sm:gap-[5dvh] gap-[15dvh]'>
 				<section className=' h-56 relative  flex items-center'>
 					<NumberFlow
 						value={number}
@@ -79,9 +79,9 @@ export default function App() {
 							<Select changeLanguage={changeLanguage} />
 							<Button
 								handleClick={playAudio}
-								classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
+								classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1 '
 							>
-								Listen
+								<span className=''>Listen</span>
 								<VolumeIcon />
 							</Button>
 						</div>
@@ -95,6 +95,7 @@ export default function App() {
 							reseatFormValues()
 						}}
 						classButton='text-buttonText-secondary bg-secondary outline-outline-secondary flex items-center gap-1'
+						applyTransform={!isMobile}
 					>
 						Change Number
 						<RefreshIcon />
@@ -109,7 +110,7 @@ export default function App() {
 						/>
 					</button>
 				</section>
-			</div>
+			</main>
 			<Modal
 				isOpenModal={showSettings}
 				closeModal={() => setShowSettings(!showSettings)}
