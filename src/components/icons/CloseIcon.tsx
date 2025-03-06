@@ -9,6 +9,7 @@ export function CloseIcon({
 }) {
 	return (
 		<svg
+			aria-label="Close modal"
 			className={`${className} cursor-pointer`}
 			height={`${size}px`}
 			width={`${size}px`}

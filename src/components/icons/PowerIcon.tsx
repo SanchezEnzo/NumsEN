@@ -1,6 +1,7 @@
 export function PowerIcon({ className, size }: { className?: string, size: number }) {
 	return (
 		<svg
+			aria-label='Turn on/off a feature'
 			className={className}
 			xmlns='http://www.w3.org/2000/svg'
 			height={`${size}px`}

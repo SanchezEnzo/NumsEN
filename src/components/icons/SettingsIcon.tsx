@@ -1,6 +1,7 @@
 export default function SettingsIcon ({ className, width, height }: { className?: string, width:number, height:number }) {
 	return (
 		<svg
+			aria-label="Access to settings"
 			viewBox='0 0 1024 1024'
 			width={`${width}px`}
 			height={`${height}px`}
