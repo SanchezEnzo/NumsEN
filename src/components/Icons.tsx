@@ -1,3 +1,113 @@
+export function ArrowDropDownIcon({ className }: { className?: string }) {
+	return (
+		<svg
+			aria-label='Reduce input number'
+			className={className}
+			xmlns='http://www.w3.org/2000/svg'
+			height='24px'
+			viewBox='0 -960 960 960'
+			width='24px'
+			fill='#e6e7ef'
+		>
+			<path d='M480-360 280-560h400L480-360Z' />
+		</svg>
+	)
+}
+
+
+export function ArrowDropUpIcon({ className }: { className?: string }) {
+	return (
+		<svg
+			aria-label='Increase input number'
+			className={className}
+			xmlns='http://www.w3.org/2000/svg'
+			height='24px'
+			viewBox='0 -960 960 960'
+			width='24px'
+			fill='#e6e7ef'
+		>
+			<path d='m280-400 200-200 200 200H280Z' />
+		</svg>
+	)
+}
+
+
+export function CloseIcon({
+	className,
+	size,
+	onClick,
+}: {
+	className?: string
+	size: number
+	onClick: () => void
+}) {
+	return (
+		<svg
+			aria-label='Close modal'
+			className={`${className} cursor-pointer`}
+			height={`${size}px`}
+			width={`${size}px`}
+			version='1.1'
+			id='Layer_1'
+			xmlns='http://www.w3.org/2000/svg'
+			xmlnsXlink='http://www.w3.org/1999/xlink'
+			x='0px'
+			y='0px'
+			viewBox='0 0 122.88 122.879'
+			enableBackground='new 0 0 122.88 122.879'
+			xmlSpace='preserve'
+			onClick={onClick}
+		>
+			<g>
+				<path
+					fill='#e6e7efbb'
+					d='M61.44,0c16.96,0,32.328,6.882,43.453,17.986c11.104,11.125,17.986,26.494,17.986,43.453 c0,16.961-6.883,32.328-17.986,43.453C93.769,115.998,78.4,122.879,61.44,122.879c-16.96,0-32.329-6.881-43.454-17.986 C6.882,93.768,0,78.4,0,61.439C0,44.48,6.882,29.111,17.986,17.986C29.112,6.882,44.48,0,61.44,0L61.44,0z M73.452,39.152 c2.75-2.792,7.221-2.805,9.986-0.026c2.764,2.776,2.775,7.292,0.027,10.083L71.4,61.445l12.077,12.25 c2.728,2.77,2.689,7.256-0.081,10.021c-2.772,2.766-7.229,2.758-9.954-0.012L61.445,71.541L49.428,83.729 c-2.75,2.793-7.22,2.805-9.985,0.025c-2.763-2.775-2.776-7.291-0.026-10.082L51.48,61.435l-12.078-12.25 c-2.726-2.769-2.689-7.256,0.082-10.022c2.772-2.765,7.229-2.758,9.954,0.013L61.435,51.34L73.452,39.152L73.452,39.152z M96.899,25.98C87.826,16.907,75.29,11.296,61.44,11.296c-13.851,0-26.387,5.611-35.46,14.685 c-9.073,9.073-14.684,21.609-14.684,35.459s5.611,26.387,14.684,35.459c9.073,9.074,21.609,14.686,35.46,14.686 c13.85,0,26.386-5.611,35.459-14.686c9.073-9.072,14.684-21.609,14.684-35.459S105.973,35.054,96.899,25.98L96.899,25.98z'
+				/>
+			</g>
+		</svg>
+	)
+}
+
+
+export function PowerIcon({
+	className,
+	size,
+}: {
+	className?: string
+	size: number
+}) {
+	return (
+		<svg
+			aria-label='Turn on/off a feature'
+			className={className}
+			xmlns='http://www.w3.org/2000/svg'
+			height={`${size}px`}
+			width={`${size}px`}
+			viewBox='0 -960 960 960'
+			fill='#e6e7ef'
+		>
+			<path d='M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-84 31.5-156.5T197-763l56 56q-44 44-68.5 102T160-480q0 134 93 227t227 93q134 0 227-93t93-227q0-67-24.5-125T707-707l56-56q54 54 85.5 126.5T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-360v-440h80v440h-80Z' />
+		</svg>
+	)
+}
+
+
+export function RefreshIcon() {
+	return (
+		<svg
+			aria-label='Get a new number'
+			xmlns='http://www.w3.org/2000/svg'
+			height='24px'
+			viewBox='0 -960 960 960'
+			width='24px'
+			fill='#e6e7ef'
+		>
+			<path d='M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z' />
+		</svg>
+	)
+}
+
+
 export default function SettingsIcon ({ className, width, height }: { className?: string, width:number, height:number }) {
 	return (
 		<svg
@@ -40,7 +150,21 @@ export default function SettingsIcon ({ className, width, height }: { className?
 
 }
 
-;;
+
+export function VolumeIcon() {
+	return (
+		<svg
+			aria-label='Get number information by voice'
+			xmlns='http://www.w3.org/2000/svg'
+			height='22px'
+			viewBox='0 -960 960 960'
+			width='22px'
+			fill='#e6e7ef'
+		>
+			<path d='M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z' />
+		</svg>
+	)
+}
 
 
 
