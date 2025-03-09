@@ -9,10 +9,7 @@ interface RangeProps {
 	reseatFormValues: () => void
 }
 
-export default function Range({
-	changeNumber,
-	reseatFormValues,
-}: RangeProps) {
+export default function Range({ changeNumber, reseatFormValues }: RangeProps) {
 	const { range, updateRange } = useRange()
 	const [localRange, setLocalRange] = useState(range)
 	const isRangeChanged = useRef({ min: range.min, max: range.max })
@@ -37,9 +34,14 @@ export default function Range({
 		reseatFormValues()
 	}
 
+	const isSameRange =
+		isRangeChanged.current.min === localRange.min &&
+		isRangeChanged.current.max === localRange.max
+	const isMinBiggestThanMax = localRange.min > localRange.max
+	const isTypeofInvalid =
+		typeof localRange.min !== 'number' || typeof localRange.max !== 'number'
 	const isDisibledSaveRangeButton =
-		(isRangeChanged.current.min === localRange.min &&
-		isRangeChanged.current.max === localRange.max) || localRange.min > localRange.max || typeof localRange.min !== 'number' || typeof localRange.max !== 'number'
+		isSameRange || isMinBiggestThanMax || isTypeofInvalid
 
 	return (
 		<div>
@@ -53,7 +55,7 @@ export default function Range({
 					max={10000000}
 					value={localRange.min}
 					onChange={(value: number | string) =>
-						 setLocalRange(prev => ({ ...prev, min: (value as number) }))
+						setLocalRange(prev => ({ ...prev, min: value as number }))
 					}
 				/>
 				<NumberInput
@@ -62,7 +64,7 @@ export default function Range({
 					max={10000000}
 					value={localRange.max}
 					onChange={(value: number | string) =>
-						 setLocalRange(prev => ({ ...prev, max: (value as number) }))
+						setLocalRange(prev => ({ ...prev, max: value as number }))
 					}
 				/>
 				<Button
