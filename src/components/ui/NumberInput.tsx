@@ -1,5 +1,4 @@
-import { ArrowDropDownIcon } from '../icons/ArrowDropDownIcon'
-import { ArrowDropUpIcon } from '../icons/ArrowDropUpIcon'
+import { ArrowDropDownIcon, ArrowDropUpIcon } from "../Icons"
 
 interface NumberInputProps {
 	label?: string

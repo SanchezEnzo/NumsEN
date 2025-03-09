@@ -7,15 +7,11 @@ import Form from './components/Form'
 import { useNumber } from './hooks/useNumber'
 import { Select } from './components/Select'
 import { RESPONSE_STATE } from './constants/responseState'
-import { VolumeIcon } from './components/icons/VolumenIcon'
-import { RefreshIcon } from './components/icons/RefreshIcon'
 import Range from './components/Range'
 import { useState } from 'react'
-import SettingsIcon from './components/icons/SettingsIcon'
 import Modal from './components/Modal'
 import { useRange } from './hooks/useRange'
 import FormAssistant from './components/AssistantForm'
-import { CloseIcon } from './components/icons/CloseIcon'
 import PowerToggleButton, {
 	POWER_BUTTON_STATES,
 } from './components/ui/PowerToggleButton'
@@ -23,6 +19,7 @@ import { useAssistant } from './hooks/useAssistant'
 import getRandomNumber from './service/getRandomNumber'
 import useMediaQuery from './hooks/useMediaQuery'
 import { setNumberFontSize } from './service/setNumberFontSize'
+import SettingsIcon, { CloseIcon, RefreshIcon, VolumeIcon } from './components/Icons'
 
 export default function App() {
 	const { range } = useRange()

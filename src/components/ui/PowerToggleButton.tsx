@@ -2,7 +2,7 @@
 
 import { motion, useAnimation, useMotionValue } from 'motion/react'
 import { useState } from 'react'
-import { PowerIcon } from '../icons/PowerIcon'
+import { PowerIcon } from '../Icons'
 
 export enum POWER_BUTTON_STATES {
 	ON,
